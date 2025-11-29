@@ -6,7 +6,7 @@ using namespace std;
 //Parent (DLL)
 struct quest{
     string namaQuest;
-    int levelMin, dificulity, reward;
+    int levelMin, dif, reward;
 };
 
 typedef quest questInfotype;
@@ -27,13 +27,30 @@ struct LQuest{
 
 void createListQuest(LQuest &L);
 adrQuest allocateQuest(questInfotype x);
-bool isEmpty(LQuest L);
+void deallocateQuest(adrQuest &Q);
+bool isEmptyQuest(LQuest L);
+
+//kondisi untuk urutan insertQuest berdasarkan dif dan levelMin
+bool isLess(adrQuest A, adrQuest B);
+
+//insert
+void insertFirstQuest(LQuest &L, adrQuest Q);
+void insertLastQuest(LQuest &L, adrQuest Q);
+void insertAfterQuest(LQuest &L, adrQuest prec, adrQuest Q);
 void insertQuest(LQuest &L, adrQuest Q);
-void deleteQuest(LQuest &L, adrQuest Q);
+
+//delete
+void deleteFirstQuest(LQuest &L, adrQuest &Q);
+void deleteLastQuest(LQuest &L, adrQuest &Q);
+void deleteAfterQuest(adrQuest prec, adrQuest &Q);
+void deleteQuest(LQuest &L, string namaQuest);
+
 adrQuest findQuest(LQuest L, string namaQuest);
-void showAllQuest(Lquest L);
+
+void showAllQuest(LQuest L);
 void showPlayersFromQuest(adrQuest Q);
 void showAllQuestWithPlayers(LQuest L);
+
 int countPlayerOnQuest(adrQuest Q);
 
 
@@ -77,6 +94,7 @@ adrRelasi allocateRelasi(adrPlayer P);
 bool isEmptyRelasi(adrQuest Q);
 void insertRelasi(adrQuest Q, adrPlayer P);
 void deleteRelasi(adrQuest Q, adrPlayer P);
+void deleteAllRelasi(adrQuest Q);
 adrRelasi findRelasi(adrQuest Q, adrPlayer P);
 void printRelasi(adrQuest Q);
 void printParentFromChild(LQuest QL, adrPlayer P);
