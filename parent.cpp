@@ -162,10 +162,12 @@ adrQuest findQuest(LQuest L, string namaQuest){
     return p;
 }
 
-//void showAllQuest(Lquest L);
-
-//void showPlayersFromQuest(adrQuest Q);
-
-//void showAllQuestWithPlayers(LQuest L);
-
-//int countPlayerOnQuest(adrQuest Q);
+void showAllQuest(Lquest L){
+    adrQuest p = L.first;
+    while (p != nullptr){
+        cout<< "Nama Quest          : "<< p->info.namaQuest<< endl;
+        cout<< "Tingkat Kesulitan   : "<< p->info.dif<< endl;
+        cout<< "Level Minimum       : "<< p->info.levelMin<< endl;
+        cout<< "Hadiah              : "<< p->info.reward<< endl;
+    }
+}

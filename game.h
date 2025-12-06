@@ -48,10 +48,6 @@ void deleteQuest(LQuest &L, string namaQuest);
 adrQuest findQuest(LQuest L, string namaQuest);
 
 void showAllQuest(LQuest L);
-void showPlayersFromQuest(adrQuest Q);
-void showAllQuestWithPlayers(LQuest L);
-
-int countPlayerOnQuest(adrQuest Q);
 
 
 //Child (SLL)
@@ -79,8 +75,6 @@ void insertPlayer(LPlayer &L, adrPlayer P);
 void deletePlayer(LPlayer &L, LQuest &QL, adrPlayer P);
 adrPlayer findPlayer(LPlayer L, string idPlayer);
 void showAllChild(LPlayer L);
-void showQuestFromPlayer(LQuest QL, adrPlayer P);
-int countQuestOfPlayer(LQuest QL, adrPlayer P);
 int countPlayerWithoutQuest(LQuest QL, LPlayer PL);
 
 
@@ -92,13 +86,24 @@ struct elmRelasi{
 
 adrRelasi allocateRelasi(adrPlayer P);
 bool isEmptyRelasi(adrQuest Q);
-void insertRelasi(adrQuest Q, adrPlayer P);
-void deleteRelasi(adrQuest Q, adrPlayer P);
-void deleteAllRelasi(adrQuest Q);
+
+void insertRelasi(adrQuest &Q, adrPlayer P);
+
+void deleteRelasi(adrQuest &Q, adrPlayer P);
+void deleteAllRelasi(adrQuest &Q);
+
 adrRelasi findRelasi(adrQuest Q, adrPlayer P);
+
 void printRelasi(adrQuest Q);
 void printParentFromChild(LQuest QL, adrPlayer P);
-void editRelasi(adrQuest Q, adrPlayer P_lama, adrPlayer P_baru);
 
+void showQuestFromPlayer(LQuest QL, adrPlayer P);
+void showPlayersFromQuest(adrQuest Q);
+void showAllQuestWithPlayers(LQuest L);
+
+int countQuestOfPlayer(LQuest QL, adrPlayer P);
+int countPlayerOnQuest(adrQuest Q);
+
+void editRelasi(adrQuest Q, adrPlayer P_lama, adrPlayer P_baru);
 
 #endif // GAME_H_INCLUDED
