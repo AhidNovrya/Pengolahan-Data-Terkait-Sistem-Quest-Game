@@ -52,8 +52,8 @@ void showAllQuest(LQuest L);
 
 //Child (SLL)
 struct player{
-    string idPlayer, nama, playerClass;
-    int level, power;
+    string idPlayer, nama, playerClass, PlayerRace;
+    int level, Wealth;
 };
 
 typedef player playerInfotype;

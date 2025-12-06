@@ -2,31 +2,21 @@
 
 void createListPlayer(LPlayer &L){
     L.first = nullptr;
-    L.last = nullptr;
 }
 adrPlayer allocatePlayer(playerInfotype x){
     adrPlayer p = new elmPlayer;
 
     p->info = x;
     p->next = nullptr;
-    p->prev = nullptr;
-    p->relasi = nullptr;
-
     return p;
 }
 bool isEmptyPlayer(LPlayer L){
-    return (L.first == nullptr) && (L.last == nullptr);
+    return (L.first == nullptr);
 }
 
 void insertPlayer(LPlayer &L, adrPlayer P){
-    if (isEmptyPlayer(L)){
-        L.first = P;
-        L.last = P;
-    } else {
         P->next = L.first;
-        L.first->prev = P;
         L.first = P;
-    }
 }
 void deletePlayer(LPlayer &L, LQuest &QL, adrPlayer P){
 
@@ -40,7 +30,19 @@ adrPlayer findPlayer(LPlayer L, string idPlayer){
 
     return p;
 }
-void showAllChild(LPlayer L);
+void showAllChild(LPlayer L){
+    adrPlayer P;
+    P = L.first;
+    while (P != nullptr){
+        cout << "Nama       : "<< P->info.nama << endl;
+        cout << "ID         : "<< P->info.idPlayer << endl;
+        cout << "Stats      : "<< "Lv " << P->info.level << " | " << P->info.playerClass << " | " << P->info.PlayerRace << endl;
+        cout << "Wealth     : "<< P->info.Wealth << "g" << endl;
+        P = P->next;
+    }
+}
 void showQuestFromPlayer(LQuest QL, adrPlayer P);
-int countQuestOfPlayer(LQuest QL, adrPlayer P);
+int countQuestOfPlayer(LQuest QL, adrPlayer P){
+
+}
 int countPlayerWithoutQuest(LQuest QL, LPlayer PL);

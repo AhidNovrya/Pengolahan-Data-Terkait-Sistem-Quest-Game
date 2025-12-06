@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1765025345 source:d:\semester3\sd_ori\tubes\file_tubes\parent.cpp
+	"game.h"
+
+1765005380 d:\semester3\sd_ori\tubes\file_tubes\game.h
+	<iostream>
+
+1765005380 source:d:\semester3\sd_ori\tubes\file_tubes\relasi.cpp
+	"game.h"
+
+1765025822 source:d:\semester3\sd_ori\tubes\file_tubes\child.cpp
+	"game.h"
+
+1765025940 source:d:\semester3\sd_ori\tubes\file_tubes\main.cpp
+	"game.h"
+
