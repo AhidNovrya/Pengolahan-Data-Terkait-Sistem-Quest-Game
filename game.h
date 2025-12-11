@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-//Parent (DLL)
+//[---------------Parent (DLL)---------------]
 struct quest{
     string namaQuest;
     int levelMin, dif, reward;
@@ -17,7 +17,7 @@ struct elmQuest{
     questInfotype info;
     adrQuest next;
     adrQuest prev;
-    adrRelasi relasi;
+    adrRelasi firstRelasi;
 };
 
 struct LQuest{
@@ -33,24 +33,26 @@ bool isEmptyQuest(LQuest L);
 //kondisi untuk urutan insertQuest berdasarkan dif dan levelMin
 bool isLess(adrQuest A, adrQuest B);
 
-//insert
+//INSERT
 void insertFirstQuest(LQuest &L, adrQuest Q);
 void insertLastQuest(LQuest &L, adrQuest Q);
-void insertAfterQuest(LQuest &L, adrQuest prec, adrQuest Q);
+void insertAfterQuest(adrQuest &prec, adrQuest Q);
 void insertQuest(LQuest &L, adrQuest Q);
 
-//delete
+//DELETE
 void deleteFirstQuest(LQuest &L, adrQuest &Q);
 void deleteLastQuest(LQuest &L, adrQuest &Q);
-void deleteAfterQuest(adrQuest prec, adrQuest &Q);
+void deleteAfterQuest(LQuest &L, adrQuest prec, adrQuest &Q);
 void deleteQuest(LQuest &L, string namaQuest);
 
+//FIND
 adrQuest findQuest(LQuest L, string namaQuest);
 
+//PRINT to Display
 void showAllQuest(LQuest L);
 
 
-//Child (SLL)
+//[---------------Child (SLL)---------------]
 struct player{
     string idPlayer, nama, playerClass, PlayerRace;
     int level, Wealth;
@@ -71,39 +73,57 @@ struct LPlayer{
 void createListPlayer(LPlayer &L);
 adrPlayer allocatePlayer(playerInfotype x);
 bool isEmptyPlayer(LPlayer L);
+
+//INSERT
 void insertPlayer(LPlayer &L, adrPlayer P);
+
+//DELETE
 void deletePlayer(LPlayer &L, LQuest &QL, adrPlayer P);
+
+//FIND
 adrPlayer findPlayer(LPlayer L, string idPlayer);
+
+//PRINT to Display
 void showAllChild(LPlayer L);
+
+//COUNT
 int countPlayerWithoutQuest(LQuest QL, LPlayer PL);
 
 
-//Relasi (SLL per quest)
+//[---------------Relasi (SLL per quest)---------------]
 struct elmRelasi{
     adrPlayer player;
     adrRelasi next;
 };
 
 adrRelasi allocateRelasi(adrPlayer P);
+void deallocateRelasi(adrRelasi R);
 bool isEmptyRelasi(adrQuest Q);
 
+//INSERT
 void insertRelasi(adrQuest &Q, adrPlayer P);
 
-void deleteRelasi(adrQuest &Q, adrPlayer P);
+//DELETE
+void deleteFirstRelasi(adrQuest &Q, adrRelasi &R);
+void deleteLastRelasi(adrQuest &Q, adrRelasi &R);
+void deleteAfterRelasi(adrQuest &Q, adrRelasi prec, adrRelasi &R);
+void deleteRelasi(adrQuest &Q, string nameOrIdPlayer);
 void deleteAllRelasi(adrQuest &Q);
 
-adrRelasi findRelasi(adrQuest Q, adrPlayer P);
+//FIND
+adrRelasi findRelasi(adrQuest Q, string nameOrIdPlayer);
 
-void printRelasi(adrQuest Q);
-void printParentFromChild(LQuest QL, adrPlayer P);
-
-void showQuestFromPlayer(LQuest QL, adrPlayer P);
+//PRINT to Display
 void showPlayersFromQuest(adrQuest Q);
 void showAllQuestWithPlayers(LQuest L);
+void showAllPlayersWithQuest();
+void showQuestFromPlayer(LQuest QL, adrPlayer P);
 
+//COUNT
 int countQuestOfPlayer(LQuest QL, adrPlayer P);
 int countPlayerOnQuest(adrQuest Q);
 
+//EDIT
 void editRelasi(adrQuest Q, adrPlayer P_lama, adrPlayer P_baru);
 
 #endif // GAME_H_INCLUDED

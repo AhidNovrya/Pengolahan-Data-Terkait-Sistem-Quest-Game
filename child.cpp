@@ -3,6 +3,7 @@
 void createListPlayer(LPlayer &L){
     L.first = nullptr;
 }
+
 adrPlayer allocatePlayer(playerInfotype x){
     adrPlayer p = new elmPlayer;
 
@@ -10,6 +11,7 @@ adrPlayer allocatePlayer(playerInfotype x){
     p->next = nullptr;
     return p;
 }
+
 bool isEmptyPlayer(LPlayer L){
     return (L.first == nullptr);
 }
@@ -18,9 +20,11 @@ void insertPlayer(LPlayer &L, adrPlayer P){
         P->next = L.first;
         L.first = P;
 }
+
 void deletePlayer(LPlayer &L, LQuest &QL, adrPlayer P){
 
 }
+
 adrPlayer findPlayer(LPlayer L, string idPlayer){
     adrPlayer p = L.first;
 
@@ -30,6 +34,7 @@ adrPlayer findPlayer(LPlayer L, string idPlayer){
 
     return p;
 }
+
 void showAllChild(LPlayer L){
     adrPlayer P;
     P = L.first;
@@ -41,8 +46,5 @@ void showAllChild(LPlayer L){
         P = P->next;
     }
 }
-void showQuestFromPlayer(LQuest QL, adrPlayer P);
-int countQuestOfPlayer(LQuest QL, adrPlayer P){
 
-}
-int countPlayerWithoutQuest(LQuest QL, LPlayer PL);
+//int countPlayerWithoutQuest(LQuest QL, LPlayer PL);

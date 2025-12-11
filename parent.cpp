@@ -1,5 +1,6 @@
 #include "game.h"
 
+//[---------------DLL---------------]
 void createListQuest(LQuest &L){
     L.first = nullptr;
     L.last = nullptr;
@@ -11,7 +12,7 @@ adrQuest allocateQuest(questInfotype x){
     p->info = x;
     p->next = nullptr;
     p->prev = nullptr;
-    p->relasi = nullptr;
+    p->firstRelasi = nullptr;
 
     return p;
 }
@@ -37,6 +38,7 @@ bool isLess(adrQuest A, adrQuest B){
 }
 
 
+//[---------------INSERT---------------]
 void insertFirstQuest(LQuest &L, adrQuest Q){
     if (isEmptyQuest(L)){
         L.first = Q;
@@ -59,7 +61,7 @@ void insertLastQuest(LQuest &L, adrQuest Q){
     }
 }
 
-void insertAfterQuest(adrQuest prec, adrQuest Q){
+void insertAfterQuest(adrQuest &prec, adrQuest Q){
     Q->next = prec->next;
     if (prec->next != NULL){
         prec->next->prev = Q;
@@ -89,6 +91,7 @@ void insertQuest(LQuest &L, adrQuest Q){
 }
 
 
+//[---------------DELETE---------------]
 void deleteFirstQuest(LQuest &L, adrQuest &Q){
     Q = L.first;
     if (L.first == L.last){
@@ -152,6 +155,8 @@ void deleteQuest(LQuest &L, string namaQuest){
     }
 }
 
+
+//[---------------FIND---------------]
 adrQuest findQuest(LQuest L, string namaQuest){
     adrQuest p = L.first;
 
@@ -162,7 +167,9 @@ adrQuest findQuest(LQuest L, string namaQuest){
     return p;
 }
 
-void showAllQuest(Lquest L){
+
+//[---------------OUTPUT DISPLAY---------------]
+void showAllQuest(LQuest L){
     adrQuest p = L.first;
     while (p != nullptr){
         cout<< "Nama Quest          : "<< p->info.namaQuest<< endl;
