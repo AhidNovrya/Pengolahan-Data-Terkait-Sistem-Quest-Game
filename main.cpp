@@ -1,6 +1,8 @@
 #include "game.h"
 
 int main(){
+    srand(time(0));
+
     LQuest L;
     LPlayer P;
     int n;
