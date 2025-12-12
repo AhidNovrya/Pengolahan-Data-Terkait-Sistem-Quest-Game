@@ -1,6 +1,8 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 //[---------------Parent (DLL)---------------]
@@ -30,13 +32,16 @@ adrQuest allocateQuest(questInfotype x);
 void deallocateQuest(adrQuest &Q);
 bool isEmptyQuest(LQuest L);
 
+//FUNGSI PENDUKUNG
 //kondisi untuk urutan insertQuest berdasarkan dif dan levelMin
 bool isLess(adrQuest A, adrQuest B);
+int generateDif(int levelMin);
+int generateReward(int difficulty);
 
 //INSERT
 void insertFirstQuest(LQuest &L, adrQuest Q);
 void insertLastQuest(LQuest &L, adrQuest Q);
-void insertAfterQuest(adrQuest &prec, adrQuest Q);
+void insertAfterQuest(adrQuest prec, adrQuest Q);
 void insertQuest(LQuest &L, adrQuest Q);
 
 //DELETE
@@ -48,7 +53,12 @@ void deleteQuest(LQuest &L, string namaQuest);
 //FIND
 adrQuest findQuest(LQuest L, string namaQuest);
 
+//COUNT
+int countAllQuest(LQuest L);
+
 //PRINT to Display
+void showQuest(adrQuest q);
+void showOneQuest(LQuest L, string namaQuest);
 void showAllQuest(LQuest L);
 
 
@@ -116,8 +126,8 @@ adrRelasi findRelasi(adrQuest Q, string nameOrIdPlayer);
 //PRINT to Display
 void showPlayersFromQuest(adrQuest Q);
 void showAllQuestWithPlayers(LQuest L);
-void showAllPlayersWithQuest();
 void showQuestFromPlayer(LQuest QL, adrPlayer P);
+void showAllPlayersWithQuest();
 
 //COUNT
 int countQuestOfPlayer(LQuest QL, adrPlayer P);
@@ -125,5 +135,11 @@ int countPlayerOnQuest(adrQuest Q);
 
 //EDIT
 void editRelasi(adrQuest Q, adrPlayer P_lama, adrPlayer P_baru);
+
+
+//[---------------TAMPILAN & MENU---------------]
+void tampilanHome();
+void tampilanMenuQuest();
+void menuQuest(LQuest &L);
 
 #endif // GAME_H_INCLUDED

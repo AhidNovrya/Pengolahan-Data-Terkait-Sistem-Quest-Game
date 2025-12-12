@@ -70,7 +70,7 @@ void deleteRelasi(adrQuest &Q, string nameOrIdPlayer){
     adrRelasi relasiTarget;
 
     if (!isEmptyRelasi(Q)){
-        relasiTarget = findRelasi(Q, namaOrIdPlayer);
+        relasiTarget = findRelasi(Q, nameOrIdPlayer);
 
         if (relasiTarget != nullptr){
             if (relasiTarget == Q->firstRelasi){
@@ -117,3 +117,50 @@ adrRelasi findRelasi(adrQuest Q, string nameOrIdPlayer){
     }
     return R;
 }
+
+
+//[---------------PRINT to DISPLAY---------------]
+void showPlayersFromQuest(adrQuest Q){
+    if (!isEmptyRelasi(Q)){
+        adrRelasi R = Q->firstRelasi;
+
+        cout<< "Player yang sedang menjalankan Quest "<< Q->info.namaQuest<< " :"<< endl;
+        while (R != nullptr){
+            cout<< "--------------------------------------------------"<< endl;
+            cout<< "Nama       : "<< R->player->info.nama<< endl;
+            cout<< "ID         : "<< R->player->info.idPlayer<< endl;
+            cout<< "Stats      : "<< "Lv "<< R->player->info.level<< " | "<< R->player->info.playerClass<< " | "<< R->player->info.PlayerRace<< endl;
+            cout<< "Wealth     : "<< R->player->info.Wealth<< "g"<< endl;
+        }
+    } else{
+        cout<< "tidak ada player yang sedang menjalankan Quest ini!!"<< endl;
+    }
+    cout<< endl;
+}
+
+void showAllQuestWithPlayers(LQuest L){
+    if (!isEmptyQuest(L)){
+        adrQuest q = L.first;
+
+        while (q != nullptr){
+            showQuest(q);
+            cout<< "||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||  ||"<< endl;
+            cout<< "\/  \/  \/  \/  \/  \/  \/  \/  \/  \/  \/  \/  \/  \/"<< endl;
+            showPlayersFromQuest(q);
+        }
+    } else{
+        cout<< "tidak ada Quest saat ini!!"<< endl;
+    }
+}
+/*
+void showQuestFromPlayer(LQuest QL, adrPlayer P){
+    if (!isEmptyQuest(QL)){
+        adrQuest q = QL.first;
+
+        while (q != nullptr){
+
+        }
+    }
+}
+*/
+void showAllPlayersWithQuest();

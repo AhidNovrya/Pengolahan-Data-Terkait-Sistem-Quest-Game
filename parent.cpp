@@ -7,14 +7,17 @@ void createListQuest(LQuest &L){
 }
 
 adrQuest allocateQuest(questInfotype x){
-    adrQuest p = new elmQuest;
+    adrQuest q = new elmQuest;
 
-    p->info = x;
-    p->next = nullptr;
-    p->prev = nullptr;
-    p->firstRelasi = nullptr;
+    x.dif = generateDif(x.levelMin);
+    x.reward = generateReward(x.dif);
 
-    return p;
+    q->info = x;
+    q->next = nullptr;
+    q->prev = nullptr;
+    q->firstRelasi = nullptr;
+
+    return q;
 }
 
 void deallocateQuest(adrQuest &Q){
@@ -28,6 +31,7 @@ bool isEmptyQuest(LQuest L){
 }
 
 
+//[---------------FUNGSI PENDUKUNG]---------------]
 bool isLess(adrQuest A, adrQuest B){
     if (A->info.dif < B->info.dif) {
         return true;
@@ -37,6 +41,66 @@ bool isLess(adrQuest A, adrQuest B){
     return false;
 }
 
+int generateDif(int levelMin){
+    if (levelMin < 10){
+        return 1;
+    } else if (levelMin <= 25){
+        return 2;
+    } else if (levelMin <= 50){
+        return 3;
+    } else if (levelMin <= 80){
+        return 4;
+    } else{
+        return 5;
+    }
+}
+
+int generateReward(int difficulty){
+    int minGold, maxGold;
+
+    switch (difficulty) {
+    case 1: // Baby
+        minGold = 1;
+        maxGold = 5;
+        break;
+    case 2: // Easy
+        minGold = 5;
+        maxGold = 13;
+        break;
+    case 3: // Normal
+        minGold = 14;
+        maxGold = 30;
+        break;
+    case 4: // Hard
+        minGold = 30;
+        maxGold = 50;
+        break;
+    default: // Extreme
+        minGold = 50;
+        maxGold = 75;
+        break;
+    }
+
+    // Rumus Random Range
+    int reward = minGold + (rand() % (maxGold - minGold + 1));
+
+    return reward;
+}
+
+string printDif(int dif){
+    switch (dif){
+    case 1:
+        return "Baby";
+    case 2:
+        return "Easy";
+    case 3:
+        return "Normal";
+    case 4:
+        return "Hard";
+    default:
+        return "Extreme";
+    }
+}
 
 //[---------------INSERT---------------]
 void insertFirstQuest(LQuest &L, adrQuest Q){
@@ -61,9 +125,9 @@ void insertLastQuest(LQuest &L, adrQuest Q){
     }
 }
 
-void insertAfterQuest(adrQuest &prec, adrQuest Q){
+void insertAfterQuest(adrQuest prec, adrQuest Q){
     Q->next = prec->next;
-    if (prec->next != NULL){
+    if (prec->next != nullptr){
         prec->next->prev = Q;
     }
     prec->next = Q;
@@ -151,30 +215,64 @@ void deleteQuest(LQuest &L, string namaQuest){
             cout << "Quest tidak ditemukan" << endl;
         }
     } else {
-        cout << "List quest kosong" << endl;
+        cout << "List quest kosong!!" << endl;
     }
 }
 
 
 //[---------------FIND---------------]
 adrQuest findQuest(LQuest L, string namaQuest){
-    adrQuest p = L.first;
+    adrQuest q = L.first;
 
-    while (p != nullptr && p->info.namaQuest != namaQuest){
-        p = p->next;
+    while (q != nullptr && q->info.namaQuest != namaQuest){
+        q = q->next;
     }
 
-    return p;
+    return q;
 }
 
 
-//[---------------OUTPUT DISPLAY---------------]
-void showAllQuest(LQuest L){
-    adrQuest p = L.first;
-    while (p != nullptr){
-        cout<< "Nama Quest          : "<< p->info.namaQuest<< endl;
-        cout<< "Tingkat Kesulitan   : "<< p->info.dif<< endl;
-        cout<< "Level Minimum       : "<< p->info.levelMin<< endl;
-        cout<< "Hadiah              : "<< p->info.reward<< endl;
+//[---------------COUNT---------------]
+int countAllQuest(LQuest L){
+    adrQuest q = L.first;
+    int n = 0;
+
+    while (q != nullptr){
+        n += 1;
+        q = q->next;
     }
+    return n;
+}
+
+
+//[---------------PRINT to DISPLAY---------------]
+void showQuest(adrQuest q){
+    cout<< "--------------------------------------------------"<< endl;
+    cout<< "Nama Quest          : "<< q->info.namaQuest<< endl;
+    cout<< "Tingkat Kesulitan   : "<< printDif(q->info.dif)<< endl;
+    cout<< "Level Minimum       : "<< q->info.levelMin<< endl;
+    cout<< "Hadiah              : "<< q->info.reward<< endl;
+}
+
+void showOneQuest(LQuest L, string namaQuest){
+    adrQuest q = findQuest(L, namaQuest);
+    if (q != nullptr){
+        showQuest(q);
+    }
+}
+
+void showAllQuest(LQuest L){
+    if (!isEmptyQuest(L)){
+        adrQuest q = L.first;
+
+        cout<< "Jumlah Quest saat ini adalah : "<< countAllQuest(L)<< endl;
+        while (q != nullptr){
+            showQuest(q);
+            q = q->next;
+        }
+    } else{
+        cout<< "List quest kosong!!";
+    }
+
+    cout<< endl;
 }
