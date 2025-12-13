@@ -54,6 +54,8 @@ void menuQuest(LQuest &L){
             cout<< "Silakan masukan nama QUEST";
             cin>> nQuestFind;
             showOneQuest(L, nQuestFind);
+            Q = findQuest(L, nQuestFind);
+            showPlayersFromQuest(Q);
             break;
         case 4:
             showAllQuest(L);

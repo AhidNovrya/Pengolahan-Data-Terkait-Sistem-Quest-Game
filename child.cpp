@@ -35,14 +35,19 @@ adrPlayer findPlayer(LPlayer L, string idPlayer){
     return p;
 }
 
+void showChild(adrPlayer P){
+    cout<< "--------------------------------------------------"<< endl;
+    cout << "Nama       : "<< P->info.nama << endl;
+    cout << "ID         : "<< P->info.idPlayer << endl;
+    cout << "Stats      : "<< "Lv " << P->info.level << " | " << P->info.playerClass << " | " << P->info.PlayerRace << endl;
+    cout << "Wealth     : "<< P->info.Wealth << "g" << endl;
+}
+
 void showAllChild(LPlayer L){
     adrPlayer P;
     P = L.first;
     while (P != nullptr){
-        cout << "Nama       : "<< P->info.nama << endl;
-        cout << "ID         : "<< P->info.idPlayer << endl;
-        cout << "Stats      : "<< "Lv " << P->info.level << " | " << P->info.playerClass << " | " << P->info.PlayerRace << endl;
-        cout << "Wealth     : "<< P->info.Wealth << "g" << endl;
+        showChild(P);
         P = P->next;
     }
 }

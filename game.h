@@ -94,6 +94,7 @@ void deletePlayer(LPlayer &L, LQuest &QL, adrPlayer P);
 adrPlayer findPlayer(LPlayer L, string idPlayer);
 
 //PRINT to Display
+void showChild(adrPlayer p);
 void showAllChild(LPlayer L);
 
 //COUNT
@@ -116,7 +117,7 @@ void insertRelasi(adrQuest &Q, adrPlayer P);
 //DELETE
 void deleteFirstRelasi(adrQuest &Q, adrRelasi &R);
 void deleteLastRelasi(adrQuest &Q, adrRelasi &R);
-void deleteAfterRelasi(adrQuest &Q, adrRelasi prec, adrRelasi &R);
+void deleteNodeRelasi(adrQuest &Q, adrRelasi prec, adrRelasi &R);
 void deleteRelasi(adrQuest &Q, string nameOrIdPlayer);
 void deleteAllRelasi(adrQuest &Q);
 
@@ -127,11 +128,12 @@ adrRelasi findRelasi(adrQuest Q, string nameOrIdPlayer);
 void showPlayersFromQuest(adrQuest Q);
 void showAllQuestWithPlayers(LQuest L);
 void showQuestFromPlayer(LQuest QL, adrPlayer P);
-void showAllPlayersWithQuest();
+void showAllPlayersWithQuest(LQuest QL, LPlayer PL);
 
 //COUNT
-int countQuestOfPlayer(LQuest QL, adrPlayer P);
-int countPlayerOnQuest(adrQuest Q);
+int countPlayerInQuest(adrQuest Q);
+int countPlayerInAllQuest(LQuest Q);
+int countQuestOfOnePlayer(LQuest QL, adrPlayer P);
 
 //EDIT
 void editRelasi(adrQuest Q, adrPlayer P_lama, adrPlayer P_baru);
