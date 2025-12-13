@@ -20,8 +20,10 @@ int main(){
             menuQuest(L);
             break;
         case 2:
+            menuPlayer(P);
             break;
         default:
+            keluarGame();
             running = false;
         }
         if (running) {

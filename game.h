@@ -37,6 +37,7 @@ bool isEmptyQuest(LQuest L);
 bool isLess(adrQuest A, adrQuest B);
 int generateDif(int levelMin);
 int generateReward(int difficulty);
+int generateWealth(int level);
 
 //INSERT
 void insertFirstQuest(LQuest &L, adrQuest Q);
@@ -64,7 +65,7 @@ void showAllQuest(LQuest L);
 
 //[---------------Child (SLL)---------------]
 struct player{
-    string idPlayer, nama, playerClass, PlayerRace;
+    string idPlayer, nama, playerClass, playerRace;
     int level, Wealth;
 };
 
@@ -82,19 +83,22 @@ struct LPlayer{
 
 void createListPlayer(LPlayer &L);
 adrPlayer allocatePlayer(playerInfotype x);
+void deallocatePlayer(adrPlayer &P);
 bool isEmptyPlayer(LPlayer L);
 
 //INSERT
 void insertPlayer(LPlayer &L, adrPlayer P);
 
 //DELETE
-void deletePlayer(LPlayer &L, LQuest &QL, adrPlayer P);
+void deletePlayer(LPlayer &L, LQuest &QL, string idPlayer);
 
 //FIND
 adrPlayer findPlayer(LPlayer L, string idPlayer);
 
 //PRINT to Display
+void showPlayer(adrPlayer p);
 void showAllChild(LPlayer L);
+void showOnePlayer(LPlayer L, string nama);
 
 //COUNT
 int countPlayerWithoutQuest(LQuest QL, LPlayer PL);
@@ -140,6 +144,10 @@ void editRelasi(adrQuest Q, adrPlayer P_lama, adrPlayer P_baru);
 //[---------------TAMPILAN & MENU---------------]
 void tampilanHome();
 void tampilanMenuQuest();
+void tampilanMenuPlayer();
 void menuQuest(LQuest &L);
+void menuPlayer(LPlayer &L);
+void keluarGame();
+void tidakAda();
 
 #endif // GAME_H_INCLUDED

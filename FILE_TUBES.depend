@@ -34,3 +34,23 @@
 1765503580 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\parent.cpp
 	"game.h"
 
+1765626087 source:d:\semester3\sd_ori\tubes\pengolahan-data-terkait-sistem-quest-game\child.cpp
+	"game.h"
+
+1765627059 d:\semester3\sd_ori\tubes\pengolahan-data-terkait-sistem-quest-game\game.h
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1765554467 source:d:\semester3\sd_ori\tubes\pengolahan-data-terkait-sistem-quest-game\parent.cpp
+	"game.h"
+
+1765562779 source:d:\semester3\sd_ori\tubes\pengolahan-data-terkait-sistem-quest-game\relasi.cpp
+	"game.h"
+
+1765558066 source:d:\semester3\sd_ori\tubes\pengolahan-data-terkait-sistem-quest-game\main.cpp
+	"game.h"
+
+1765559766 source:d:\semester3\sd_ori\tubes\pengolahan-data-terkait-sistem-quest-game\menu&tampilan.cpp
+	"game.h"
+

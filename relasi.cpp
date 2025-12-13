@@ -87,6 +87,7 @@ void deleteRelasi(adrQuest &Q, string nameOrIdPlayer){
         }
     } else{
         cout<< "tidak ada Player yang menjalankan Quest ini"<< endl;
+
     }
 }
 
@@ -110,7 +111,7 @@ adrRelasi findRelasi(adrQuest Q, string nameOrIdPlayer){
     adrRelasi R = Q->firstRelasi;
 
     while (R != nullptr){
-        if (R->player->info.idPlayer != nameOrIdPlayer || R->player->info.nama != nameOrIdPlayer){
+        if (R->player->info.idPlayer == nameOrIdPlayer || R->player->info.nama == nameOrIdPlayer){
             return R;
         }
         R = R->next;
@@ -129,7 +130,7 @@ void showPlayersFromQuest(adrQuest Q){
             cout<< "--------------------------------------------------"<< endl;
             cout<< "Nama       : "<< R->player->info.nama<< endl;
             cout<< "ID         : "<< R->player->info.idPlayer<< endl;
-            cout<< "Stats      : "<< "Lv "<< R->player->info.level<< " | "<< R->player->info.playerClass<< " | "<< R->player->info.PlayerRace<< endl;
+            cout<< "Stats      : "<< "Lv "<< R->player->info.level<< " | "<< R->player->info.playerClass<< " | "<< R->player->info.playerRace<< endl;
             cout<< "Wealth     : "<< R->player->info.Wealth<< "g"<< endl;
         }
     } else{

@@ -18,6 +18,16 @@ void tampilanMenuQuest(){
     cout<< "Silakan pilih (1/2/3/4/5):";
 }
 
+void tampilanMenuPlayer(){
+    cout<< "1. Menambahkan Player"<< endl;
+    cout<< "2. Menghapus Player"<< endl;
+    cout<< "3. Mencari Player"<< endl;
+    cout<< "4. Menampilan semua Player"<< endl;
+    cout<< "5. Back"<< endl;
+    cout<< "Silakan pilih (1/2/3/4/5):";
+}
+
+
 void menuQuest(LQuest &L){
     adrQuest Q;
     questInfotype x;
@@ -67,3 +77,117 @@ void menuQuest(LQuest &L){
         }
     }
 }
+
+void menuPlayer(LPlayer &L){
+    LQuest QL;
+    adrPlayer P;
+    playerInfotype x;
+    string nPlayerHapus, nPlayerFind;
+    int n, j;
+    bool running = true;
+
+    while (running){
+        system("cls");
+        tampilanMenuPlayer();
+        cin>> n;
+        cout<< endl;
+        switch (n){
+        case 1:
+            cout<< "Silakan masukan jumlah PLAYER yang akan ditambahkan : "<< endl;
+            cin>> j;
+            for (int i=0; i<j; i++){
+                cout << "Id Player : ";
+                cin >> x.idPlayer;
+                cout << "Nama Player : ";
+                cin >> x.nama;
+                cout << "Class Player : ";
+                cin >> x.playerClass;
+                cout << "Ras Player : ";
+                cin >> x.playerRace;
+                cout << "Level Player : ";
+                cin >> x.level;
+
+
+                P = allocatePlayer(x);
+                insertPlayer(L, P);
+                cout<< endl;
+            }
+            break;
+        case 2:
+            cout<< "Silakan masukan id PLAYER yang ingin dihapus : ";
+            cin>> nPlayerHapus;
+            deletePlayer(L, QL, nPlayerHapus);
+            break;
+        case 3:
+            cout<< "Silakan masukan Id PLAYER : ";
+            cin>> nPlayerFind;
+            showOnePlayer(L, nPlayerFind);
+            break;
+        case 4:
+            showAllChild(L);
+            break;
+        case 5:
+            //countPlayerWithoutQuest(LQuest, LPlayer);
+        default:
+            running = false;
+            break;
+        }
+        if (running) {
+             system("pause");
+        }
+    }
+}
+
+void keluarGame(){
+cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#-=++....        " << endl;
+cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%=*===:.        " << endl;
+cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%===:..        " << endl;
+cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%+===..       " << endl;
+cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%====:  .    " << endl;
+cout << "%%%%%%%%%%%%%%%%%%%%%%%%%#%#%%%%%%%%%%%%%%%%%%%+#==-..    " << endl;
+cout << "%%%%%%%%%%%%%%%%%%%%%%%*#@@%%%%%%%%%%%%%%%%%%%%%-**==.    " << endl;
+cout << "%%%%%%%%%%%%%%%%%%%%%**%*@@@%%%%%%%%%%%%%%%#%%%%%==*=- .  " << endl;
+cout << "%%%%%%%%%%%%%%%%%%%%%%%%*@@@@#%%%%%%%%%%%%%*%%%%%*===-..  " << endl;
+cout << "%%%%%%+#%%%%%%%%%%%%%%%#%@@@@@@%%%%%%%%%%%%##%%%%%=--#: .." << endl;
+cout << "%%%%%%%###%%%%%%%%%*%%%#%@@@**%@*%%%%%%%%%%%+%%%%%+=*%+..." << endl;
+cout << "%%%%%%%#%%%%%%%%%%%*#%%#@*-%+==#+-+#%%%%%%%%#%%%%%+*%%#..." << endl;
+cout << "%%%%%%**%%%%%%%%%%#%#%%*#@%-======##=@@@%%%%%%%%%%#%%%%:.." << endl;
+cout << "%%%%%%%+==*##*##%@@@@@@@@@+#####===@@@@@%%%%%%%%%%%#%%%+.." << endl;
+cout << "%%%%*-@%=-%%+*@@@@@@@@@@@@#%%####=*@@@@@#%%%%%%%%%%#%%%#.." << endl;
+cout << "%%#++@#=-====*@@@@@@@@@@@@@#+##**@@@%%%%%%%%%%%%%%%*%%=*.." << endl;
+cout << "#@%+@@**###+=+@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%*%#...." << endl;
+cout << "@@%%@@@*####=%@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%*%%*...." << endl;
+cout << "@@@@@@@@%*+%@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%*%%%%+.  ." << endl;
+cout << "*@@@@@%%%%%@@@@@@@@%######@@@@@@@@@@@@%#%%%%%#***#######**" << endl;
+cout << ".#@@%%%%%%%%@@@@@@@@*%%%%%%%#%@@@@@@@%#*%%**########**%@%*" << endl;
+cout << "..#@%%%%%%%@@@@@@@@@*%%%%%%%%%*@@@@@#*+++#########*%@@@@@@" << endl;
+cout << "...#@%%%%%%@@@@@@@@@*%%%%%%%%%%*@%#@@+=##########+@@@@@@@@" << endl;
+cout << "=**+++=+*#%%%%@@@@@@%%%%%%%%%%%#%@@@@*###########%@@@@@@@@" << endl;
+cout << "++++++++=+++*@@#=*%%##%%%%%%%%%%%*@@*###########+@@@@@@@@@" << endl;
+cout << "+++++==%%%%%##%==@@@@@%@@%%%%%%*@%@#############+@@@@@@@@@" << endl;
+cout << "%=+++*+%%%%%+##+*@@@@@#@@@@*+*@@#@*###########**@@@@@@@@@@" << endl;
+cout << "@@@%##=%%%%%+*##*#@@@@%#@%*****%@*########*#%@@@@@@%#%@@@@" << endl;
+cout << "@@@%+#****+**+*%@@@%#%%@#@=**+@@%*######*%@@@@@@@@@@@@@@@@" << endl;
+cout << "@@@@=*#######*@@@@@@@@@@@%%+***%*########*@@@@@@@@@@@@@@@@" << endl;
+cout << "@@@@%=*#####%@@@@@@@@@@@@@@****#+##########@@@@@@@@@@@@@@@" << endl;
+}
+void tidakAda(){
+    cout << "         :##+.                                               " << endl;
+    cout << "         .#####+.                          .=*#-             " << endl;
+    cout << "         :*#######=                    :+*#####=             " << endl;
+    cout << "          :*########*-    ..:::....=+##########+             " << endl;
+    cout << "           :+#################################=.             " << endl;
+    cout << "             -##############################=.               " << endl;
+    cout << "               -##########################+.                 " << endl;
+    cout << "               +########################*:                   " << endl;
+    cout << "              :####* .##########=. =#####*                   " << endl;
+    cout << "              +####=:=##########+-=#######-                  " << endl;
+    cout << "             -*+#########++##########**###-                  " << endl;
+    cout << "             :===+#################=====###.                 " << endl;
+    cout << "             -===*######*-**+######=====###=                 " << endl;
+    cout << "             =###########****+#############+                 " << endl;
+    cout << "             .*#############################.                " << endl;
+    cout << "              .#############################=                " << endl;
+    cout << "              :##############################:               " << endl;
+}
+
