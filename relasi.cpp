@@ -153,15 +153,68 @@ void showAllQuestWithPlayers(LQuest L){
         cout<< "tidak ada Quest saat ini!!"<< endl;
     }
 }
-/*
+
 void showQuestFromPlayer(LQuest QL, adrPlayer P){
     if (!isEmptyQuest(QL)){
         adrQuest q = QL.first;
 
+        cout<< "Player ini sedang melakukan quest: "<< endl;
         while (q != nullptr){
+            adrRelasi r = findRelasi(q, P->info.nama);
 
+            if (r != nullptr){
+                cout<< q->info.namaQuest<< " ,";
+            }
+            q = q->next;
+        }
+        cout<< endl;
+    }
+}
+
+void showAllPlayersWithQuest(LQuest QL, LPlayer PL){
+    if (!isEmptyPlayer(PL)){
+        adrPlayer p = PL.first;
+
+        while (p != nullptr){
+            showPlayer(p);
+            showQuestFromPlayer(QL, p);
+            p = p->next;
         }
     }
 }
-*/
-void showAllPlayersWithQuest();
+
+//[---------------COUNT---------------]
+int countPlayerInQuest(adrQuest Q){
+    int i = 0;
+    adrRelasi R = Q->firstRelasi;
+
+    while (R != nullptr){
+        i++;
+        R = R->next;
+    }
+    return i;
+}
+
+int countPlayerInAllQuest(LQuest Q){
+    int total = 0, i = 0;
+    adrQuest q = Q.first;
+
+    while (q != nullptr){
+        i = countPlayerInQuest(q);
+        total += i;
+    }
+    return total;
+}
+
+int countQuestOfOnePlayer(LQuest QL, adrPlayer P){
+    adrQuest Q = QL.first;
+    int i = 0;
+
+    while (Q != nullptr){
+        if (findRelasi(Q, P->info.nama) != nullptr){
+            i++;
+        }
+        Q = Q->next;
+    }
+    return i;
+}

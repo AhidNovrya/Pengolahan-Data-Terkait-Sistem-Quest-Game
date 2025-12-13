@@ -14,21 +14,21 @@
 1765025940 source:d:\semester3\sd_ori\tubes\file_tubes\main.cpp
 	"game.h"
 
-1765475863 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\child.cpp
+1765628848 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\child.cpp
 	"game.h"
 
-1765503580 d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\game.h
+1765629277 d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\game.h
 	<iostream>
 	<cstdlib>
 	<ctime>
 
-1765547170 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\main.cpp
+1765628848 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\main.cpp
 	"game.h"
 
-1765501420 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\relasi.cpp
+1765628848 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\relasi.cpp
 	"game.h"
 
-1765503659 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\menu&tampilan.cpp
+1765628848 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\menu&tampilan.cpp
 	"game.h"
 
 1765503580 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\parent.cpp
