@@ -3,7 +3,17 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <iomanip>
 using namespace std;
+
+// WARNA TEXT (ANSI CODES)
+#define RESET   "\033[0m"
+#define RED     "\033[31m"      // Merah (Untuk Error/Hapus)
+#define GREEN   "\033[32m"      // Hijau (Untuk Sukses/Tambah)
+#define YELLOW  "\033[33m"      // Kuning (Untuk Gold/Highlight)
+#define BLUE    "\033[34m"      // Biru (Untuk Judul/Info)
+#define MAGENTA "\033[35m"      // Ungu (Untuk Item Langka/Epik)
+#define CYAN    "\033[36m"      // Biru Muda (Untuk Dekorasi)
 
 //[---------------Parent (DLL)---------------]
 struct quest{
@@ -44,6 +54,7 @@ void insertFirstQuest(LQuest &L, adrQuest Q);
 void insertLastQuest(LQuest &L, adrQuest Q);
 void insertAfterQuest(adrQuest prec, adrQuest Q);
 void insertQuest(LQuest &L, adrQuest Q);
+void inputQuest(LQuest &L);
 
 //DELETE
 void deleteFirstQuest(LQuest &L, adrQuest &Q);
@@ -142,11 +153,14 @@ void editRelasi(adrQuest Q, adrPlayer P_lama, adrPlayer P_baru);
 
 
 //[---------------TAMPILAN & MENU---------------]
+void judul();
+void garis();
+void garisKartu();
 void tampilanHome();
 void tampilanMenuQuest();
 void tampilanMenuPlayer();
 void menuQuest(LQuest &L);
-void menuPlayer(LPlayer &L);
+void menuPlayer(LQuest &QL, LPlayer &L);
 void keluarGame();
 void tidakAda();
 

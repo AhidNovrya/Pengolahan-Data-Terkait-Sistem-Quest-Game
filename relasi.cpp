@@ -218,3 +218,7 @@ int countQuestOfOnePlayer(LQuest QL, adrPlayer P){
     }
     return i;
 }
+
+
+//[---------------EDIT---------------]
+void editRelasi(adrQuest Q, adrPlayer P_lama, adrPlayer P_baru);

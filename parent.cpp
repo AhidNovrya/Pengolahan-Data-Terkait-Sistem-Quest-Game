@@ -154,6 +154,32 @@ void insertQuest(LQuest &L, adrQuest Q){
     }
 }
 
+void inputQuest(LQuest &L){
+    adrQuest Q;
+    questInfotype x;
+    int j, levelMin;
+
+    cout<< "    Silakan masukan jumlah QUEST yang akan ditambahkan : ";
+    cin>> j;
+    for (int i=0; i<j; i++){
+        cout<< "    Nama Quest : ";
+        cin>> x.namaQuest;
+        levelMin = 0;
+        while (levelMin < 1 || levelMin > 100){
+            cout<< "    Level Minimal (1-100): ";
+            cin>> levelMin;
+            if (levelMin >= 1 && levelMin <= 100){
+                x.levelMin = levelMin;
+            } else{
+                cout<< RED<< "    Maaf, input tidak valid. harap masukan nilai yang sesuai!!"<< RESET<< endl;
+            }
+        }
+
+        Q = allocateQuest(x);
+        insertQuest(L, Q);
+        cout<< endl;
+    }
+}
 
 //[---------------DELETE---------------]
 void deleteFirstQuest(LQuest &L, adrQuest &Q){
@@ -212,10 +238,10 @@ void deleteQuest(LQuest &L, string namaQuest){
 
             deallocateQuest(Q);
         } else {
-            cout << "Quest tidak ditemukan" << endl;
+            cout << RED<< "   Maaf, Quest tidak ditemukan!!"<< RESET<< endl;
         }
     } else {
-        cout << "List quest kosong!!" << endl;
+        cout << BLUE<< "   List quest kosong!!"<< RESET<< endl;
     }
 }
 
@@ -247,17 +273,22 @@ int countAllQuest(LQuest L){
 
 //[---------------PRINT to DISPLAY---------------]
 void showQuest(adrQuest q){
-    cout<< "--------------------------------------------------"<< endl;
-    cout<< "Nama Quest          : "<< q->info.namaQuest<< endl;
-    cout<< "Tingkat Kesulitan   : "<< printDif(q->info.dif)<< endl;
-    cout<< "Level Minimum       : "<< q->info.levelMin<< endl;
-    cout<< "Hadiah              : "<< q->info.reward<< endl;
+    garisKartu();
+    cout<< R"(
+    ||  Nama Quest        : )"<< left<< setw(20)<< q->info.namaQuest<< R"(||
+    ||  Tingkat Kesulitan : )"<< left<< setw(20)<< printDif(q->info.dif)<< R"(||
+    ||  Level Minimum     : )"<< left<< setw(20)<< q->info.levelMin<< R"(||
+    ||  Hadiah            : )"<< left<< setw(20)<< q->info.reward<< R"(||
+     \__________________________________________/
+)";
 }
 
 void showOneQuest(LQuest L, string namaQuest){
     adrQuest q = findQuest(L, namaQuest);
     if (q != nullptr){
         showQuest(q);
+    } else{
+        cout<< RED<< "    Maaf, QUEST tidak ditemukan!!"<< RESET<< endl;
     }
 }
 
@@ -265,13 +296,13 @@ void showAllQuest(LQuest L){
     if (!isEmptyQuest(L)){
         adrQuest q = L.first;
 
-        cout<< "Jumlah Quest saat ini adalah : "<< countAllQuest(L)<< endl;
+        cout<< "    Jumlah Quest saat ini adalah : "<< countAllQuest(L)<< endl;
         while (q != nullptr){
             showQuest(q);
             q = q->next;
         }
     } else{
-        cout<< "List quest kosong!!";
+        cout<< BLUE<< "    List quest kosong!!"<< RESET<< endl;
     }
 
     cout<< endl;

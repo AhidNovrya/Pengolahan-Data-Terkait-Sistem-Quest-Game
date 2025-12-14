@@ -1,38 +1,78 @@
 #include "game.h"
 
+void judul(){
+    cout<< R"(
+//========================================================\\
+||    ____  __  ________________  ________   __  _______  ||
+||   / __ \/ / / / __/ __/_  __/ / ___/ _ | /  |/  / __/  ||
+||  / /_/ / /_/ / _/_\ \  / /   / (_ / __ |/ /|_/ / _/    ||
+||  \___\_\____/___/___/ /_/    \___/_/ |_/_/  /_/___/    ||
+||                                                        ||
+)";
+    garis();
+}
+
+void garis(){
+    cout<< "============================================================";
+}
+
+void garisKartu(){
+    cout<< R"(     /==========================================\)";
+}
+
 void tampilanHome(){
-    cout<< "1. Quest"<< endl;
-    cout<< "2. Player"<< endl;
-    cout<< "3. Exit"<< endl;
-    cout<< "Silakan pilih (1/2/3):";
+    cout<< R"(
+||                                                        ||
+||  1. Manajeman Quest                                    ||
+||  2. Manajeman Player                                   ||
+||                                                        ||
+||--------------------------------------------------------||
+||  0. Exit                                               ||
+)";
+    garis();
+    cout<< endl;
+    cout<< "    PILIH MENU (1-3): ";
 }
 
 
 //[---------------QUEST---------------]
 void tampilanMenuQuest(){
-    cout<< "1. Menambahkan QUEST"<< endl;
-    cout<< "2. Menghapus QUEST"<< endl;
-    cout<< "3. Mencari QUEST"<< endl;
-    cout<< "4. Menampilan semua QUEST"<< endl;
-    cout<< "5. Back"<< endl;
-    cout<< "Silakan pilih (1/2/3/4/5):";
+    judul();
+    cout<< R"(
+||                                                        ||
+||  1. Menambahkan QUEST                                  ||
+||  2. Menghapus QUEST                                    ||
+||  3. Mencari QUEST                                      ||
+||  4. Menampilan semua QUEST                             ||
+||                                                        ||
+||--------------------------------------------------------||
+||  0. Back                                               ||
+)";
+    garis();
+    cout<< endl;
+    cout<< "    Silakan pilih (0/1/2/3/4): ";
 }
 
 void tampilanMenuPlayer(){
-    cout<< "1. Menambahkan Player"<< endl;
-    cout<< "2. Menghapus Player"<< endl;
-    cout<< "3. Mencari Player"<< endl;
-    cout<< "4. Menampilan semua Player"<< endl;
-    cout<< "5. Back"<< endl;
-    cout<< "Silakan pilih (1/2/3/4/5):";
+    cout<< R"(
+||                                                        ||
+||  1. Menambahkan Player                                 ||
+||  2. Menghapus Player                                   ||
+||  3. Mencari Player                                     ||
+||  4. Menampilan semua Player                            ||
+||                                                        ||
+||--------------------------------------------------------||
+||  0. Back                                               ||
+)";
+    garis();
+    cout<< endl;
+    cout<< "    Silakan pilih (0/1/2/3/4):";
 }
 
 
 void menuQuest(LQuest &L){
-    adrQuest Q;
-    questInfotype x;
     string nQuestHapus, nQuestFind;
-    int n, j;
+    int n;
     bool running = true;
 
     while (running){
@@ -41,27 +81,19 @@ void menuQuest(LQuest &L){
         cin>> n;
         cout<< endl;
         switch (n){
+        case 0:
+            running = false;
+            break;
         case 1:
-            cout<< "Silakan masukan jumlah QUEST yang akan ditambahkan : "<< endl;
-            cin>> j;
-            for (int i=0; i<j; i++){
-                cout<< "Nama Quest : ";
-                cin>> x.namaQuest;
-                cout<< "Level Minimal : ";
-                cin>> x.levelMin;
-
-                Q = allocateQuest(x);
-                insertQuest(L, Q);
-                cout<< endl;
-            }
+            inputQuest(L);
             break;
         case 2:
-            cout<< "Silakan masukan nama QUEST yang ingin dihapus : ";
+            cout<< "    Silakan masukan nama QUEST yang ingin dihapus : ";
             cin>> nQuestHapus;
             deleteQuest(L, nQuestHapus);
             break;
         case 3:
-            cout<< "Silakan masukan nama QUEST";
+            cout<< "    Silakan masukan nama QUEST: ";
             cin>> nQuestFind;
             showOneQuest(L, nQuestFind);
             break;
@@ -69,7 +101,7 @@ void menuQuest(LQuest &L){
             showAllQuest(L);
             break;
         default:
-            running = false;
+            cout<< RED<< "    Mohon pilih menu yang tertera!!"<< endl;
             break;
         }
         if (running) {
@@ -78,8 +110,7 @@ void menuQuest(LQuest &L){
     }
 }
 
-void menuPlayer(LPlayer &L){
-    LQuest QL;
+void menuPlayer(LQuest &QL, LPlayer &L){
     adrPlayer P;
     playerInfotype x;
     string nPlayerHapus, nPlayerFind;
@@ -92,6 +123,9 @@ void menuPlayer(LPlayer &L){
         cin>> n;
         cout<< endl;
         switch (n){
+        case 0:
+            running = false;
+            break;
         case 1:
             cout<< "Silakan masukan jumlah PLAYER yang akan ditambahkan : "<< endl;
             cin>> j;
@@ -129,7 +163,7 @@ void menuPlayer(LPlayer &L){
         case 5:
             //countPlayerWithoutQuest(LQuest, LPlayer);
         default:
-            running = false;
+            cout<< "Mohon pilih menu yang tertera!!"<< endl;
             break;
         }
         if (running) {
@@ -137,6 +171,7 @@ void menuPlayer(LPlayer &L){
         }
     }
 }
+
 
 void keluarGame(){
 cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#-=++....        " << endl;

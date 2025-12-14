@@ -3,28 +3,32 @@
 int main(){
     srand(time(0));
 
-    LQuest L;
+    LQuest Q;
     LPlayer P;
     int n;
     bool running = true;
 
-    createListQuest(L);
+    createListQuest(Q);
     createListPlayer(P);
 
     while (running){
         system("cls");
+        judul();
         tampilanHome();
         cin>> n;
         switch (n){
-        case 1:
-            menuQuest(L);
-            break;
-        case 2:
-            menuPlayer(P);
-            break;
-        default:
+        case 0:
             keluarGame();
             running = false;
+            break;
+        case 1:
+            menuQuest(Q);
+            break;
+        case 2:
+            menuPlayer(Q, P);
+            break;
+        default:
+            cout<< RED<< "    Mohon pilih menu yang tertera!!"<< endl;
         }
         if (running) {
             system("pause");
