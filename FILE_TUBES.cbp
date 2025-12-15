@@ -24,6 +24,7 @@
 					<Add option="-O2" />
 				</Compiler>
 				<Linker>
+					<Add option="-static" />
 					<Add option="-s" />
 				</Linker>
 			</Target>
@@ -32,6 +33,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Linker>
+			<Add option="-static" />
+		</Linker>
 		<Unit filename="Menu&amp;Tampilan.cpp" />
 		<Unit filename="child.cpp" />
 		<Unit filename="game.h" />
