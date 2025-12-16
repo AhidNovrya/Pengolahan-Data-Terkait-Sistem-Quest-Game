@@ -28,7 +28,7 @@ int main(){
             menuPlayer(Q, P);
             break;
         default:
-            cout<< RED<< "    Mohon pilih menu yang tertera!!"<< endl;
+            cout<< RED<< "    Mohon pilih menu yang tertera!!"<< RESET<< endl;
         }
         if (running) {
             system("pause");

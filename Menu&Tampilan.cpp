@@ -101,7 +101,7 @@ void menuQuest(LQuest &L){
             showAllQuest(L);
             break;
         default:
-            cout<< RED<< "    Mohon pilih menu yang tertera!!"<< endl;
+            cout<< RED<< "    Mohon pilih menu yang tertera!!"<< RESET<< endl;
             break;
         }
         if (running) {
