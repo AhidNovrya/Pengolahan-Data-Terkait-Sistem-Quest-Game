@@ -2,6 +2,10 @@ goblin
 1
 1
 1
+slime
+2
+1
+2
 wolf
 20
 2

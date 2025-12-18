@@ -45,8 +45,9 @@
 			<Add option="-static-libgcc" />
 			<Add option="-static" />
 		</Linker>
-		<Unit filename="Menu&amp;Tampilan.cpp" />
+		<Unit filename="MenuTampilan.cpp" />
 		<Unit filename="child.cpp" />
+		<Unit filename="file_io.cpp" />
 		<Unit filename="game.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="parent.cpp" />
