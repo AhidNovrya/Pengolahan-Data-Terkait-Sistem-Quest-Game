@@ -1,9 +1,11 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 #include <iostream>
+#include <fstream>
 #include <cstdlib>
 #include <ctime>
 #include <iomanip>
+#include <string>
 using namespace std;
 
 // WARNA TEXT (ANSI CODES)
@@ -159,9 +161,13 @@ void garisKartu();
 void tampilanHome();
 void tampilanMenuQuest();
 void tampilanMenuPlayer();
-void menuQuest(LQuest &L);
+void menuQuest(LQuest &LQ, LPlayer &LP);
 void menuPlayer(LQuest &QL, LPlayer &L);
 void keluarGame();
 void tidakAda();
+
+//[---------------FILE I/O---------------]
+void saveData(LQuest LQ, LPlayer LP);
+void loadData(LQuest &LQ, LPlayer &LP);
 
 #endif // GAME_H_INCLUDED

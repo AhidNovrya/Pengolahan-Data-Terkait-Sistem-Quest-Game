@@ -11,6 +11,8 @@ int main(){
     createListQuest(Q);
     createListPlayer(P);
 
+    loadData(Q, P);
+
     while (running){
         system("cls");
         judul();
@@ -18,11 +20,12 @@ int main(){
         cin>> n;
         switch (n){
         case 0:
+            saveData(Q, P);
             keluarGame();
             running = false;
             break;
         case 1:
-            menuQuest(Q);
+            menuQuest(Q, P);
             break;
         case 2:
             menuPlayer(Q, P);

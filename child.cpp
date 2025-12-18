@@ -35,12 +35,12 @@ void deletePlayer(LPlayer &L, LQuest &QL, string idPlayer){
 
 
     if (isEmptyPlayer(L)){
-        cout << "Player yang inging dihapus, tidak ada";
+        cout << "   Player yang ingin dihapus, tidak ada";
         tidakAda();
     }else{
         p = findPlayer(L, idPlayer);
         if (p == nullptr){
-            cout << "Player dengan id " << idPlayer << " tidak ditemukan" << endl;
+            cout << RED<< "   Player dengan id " << idPlayer << " tidak ditemukan" << RESET<< endl;
         }else{
             q = QL.first;
             while (q != nullptr){
@@ -72,15 +72,11 @@ void deletePlayer(LPlayer &L, LQuest &QL, string idPlayer){
                 p->next = nullptr;
                 deallocatePlayer(p);
 
-            cout << "Player berhasil dihapus " << endl;
+            cout << "   Player berhasil dihapus " << endl;
+            }
         }
     }
 }
-}
-
-
-
-
 
 
 // FIND
@@ -96,22 +92,23 @@ adrPlayer findPlayer(LPlayer L,  string idPlayer){
 
 // SHOW
 void showPlayer(adrPlayer P){
-    cout<< "--------------------------------------------------"<< endl;
-    cout << "Nama       : "<< P->info.nama << endl;
-    cout << "ID         : "<< P->info.idPlayer << endl;
-    cout << "Stats      : "<< "Lv " << P->info.level << " | " << P->info.playerClass << " | " << P->info.playerRace << endl;
-    cout << "Wealth     : "<< P->info.Wealth << "g" << endl;
+    string strStat = "Lv. " + to_string(P->info.level) + " | " + P->info.playerClass + " | " + P->info.playerRace;
+    string strGold = to_string(P->info.Wealth) + " g";
+    garisKartu();
+    cout<< R"(
+    ||  Nama       : )"<< left<< setw(27)<< P->info.nama << R"(||
+    ||  ID         : )"<< left<< setw(27)<< P->info.idPlayer << R"(||
+    ||  Stats      : )"<< left<< setw(27)<< strStat<< R"(||
+    ||  Wealth     : )"<< left<< setw(27)<< strGold<< R"(||
+     \__________________________________________/
+)";
 }
 
 void showAllChild(LPlayer L){
     adrPlayer P;
     P = L.first;
     while (P != nullptr){
-        cout<< "--------------------------------------------------"<< endl;
-        cout << "Nama       : "<< P->info.nama << endl;
-        cout << "ID         : "<< P->info.idPlayer << endl;
-        cout << "Stats      : "<< "Lv " << P->info.level << " | " << P->info.playerClass << " | " << P->info.playerRace << endl;
-        cout << "Wealth     : "<< P->info.Wealth << "g" << endl;
+        showPlayer(P);
         P = P->next;
     }
 }
@@ -121,31 +118,48 @@ void showOnePlayer(LPlayer L, string id){
     if (p != nullptr){
         showPlayer(p);
     }else{
-        cout << "player yang anda cari tidak ada";
+        cout << RED<< "player yang anda cari tidak ada"<< RESET <<endl;
     }
 }
-// fungsi pendukung
-int countPlayerWithoutQuest(LQuest QL, LPlayer PL){
-    adrPlayer P;
-    adrQuest q;
 
+//COUNT
+int countPlayerWithoutQuest(LQuest QL, LPlayer PL){
+    adrPlayer P = PL.first;
     int jumlah = 0;
-    P = PL.first;
-    q = QL.first;
+
+    // 1. Loop untuk setiap PLAYER
     while (P != nullptr){
-        if (findRelasi(q, P->info.idPlayer) == nullptr){
-            cout<< "--------------------------------------------------"<< endl;
-            cout << "Nama       : "<< P->info.nama << endl;
-            cout << "ID         : "<< P->info.idPlayer << endl;
-            cout << "Stats      : "<< "Lv " << P->info.level << " | " << P->info.playerClass << " | " << P->info.playerRace << endl;
-            cout << "Wealth     : "<< P->info.Wealth << "g" << endl;
-            jumlah ++;
+        bool punyaQuest = false;
+        adrQuest q = QL.first;
+
+        // 2. Cek Quest
+        // Loop berjalan selama q tidak habis DAN player belum ditemukan di quest manapun
+        while (q != nullptr && !punyaQuest){
+
+            if (findRelasi(q, P->info.idPlayer) != nullptr){
+                // Jika ketemu, ubah status jadi true.
+                // Loop akan berhenti otomatis pada pengecekan while berikutnya.
+                punyaQuest = true;
+            } else {
+                // Jika belum ketemu, lanjut ke quest berikutnya
+                q = q->next;
+            }
         }
+
+        // 3. Jika status tetap false, berarti dia pengangguran
+        if (punyaQuest == false){
+            showPlayer(P);
+            jumlah++;
+        }
+
         P = P->next;
     }
 
     return jumlah;
 }
+
+
+// fungsi pendukung
 int generateWealth(int level){
     int minGold, maxGold;
 

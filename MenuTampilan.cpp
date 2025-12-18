@@ -31,7 +31,7 @@ void tampilanHome(){
 )";
     garis();
     cout<< endl;
-    cout<< "    PILIH MENU (1-3): ";
+    cout<< "    PILIH MENU (0-2): ";
 }
 
 
@@ -45,34 +45,47 @@ void tampilanMenuQuest(){
 ||  3. Mencari QUEST                                      ||
 ||  4. Menampilan semua QUEST                             ||
 ||                                                        ||
+||  [MANAJEMEN PARTY]                                     ||
+||  5. Daftarkan Player ke Quest (Ambil Misi)             ||
+||  6. Keluarkan Player dari Quest (Kick)                 ||
+||  7. Tukar Player dalam Quest (Edit Party)              ||
+||  8. Lihat Daftar Player di Quest Tertentu              ||
+||                                                        ||
 ||--------------------------------------------------------||
 ||  0. Back                                               ||
 )";
     garis();
     cout<< endl;
-    cout<< "    Silakan pilih (0/1/2/3/4): ";
+    cout<< "    Silakan pilih (0-8): ";
 }
 
 void tampilanMenuPlayer(){
+    judul();
     cout<< R"(
 ||                                                        ||
 ||  1. Menambahkan Player                                 ||
 ||  2. Menghapus Player                                   ||
 ||  3. Mencari Player                                     ||
 ||  4. Menampilan semua Player                            ||
+||  5. Menampilan Player yang tidak mengikuti Quest       ||
+||                                                        ||
+||  [STATUS PLAYER]                                       ||
+||  6. Cek Quest Aktif Player (Lihat Kesibukan)           ||
 ||                                                        ||
 ||--------------------------------------------------------||
 ||  0. Back                                               ||
 )";
     garis();
     cout<< endl;
-    cout<< "    Silakan pilih (0/1/2/3/4):";
+    cout<< "    Silakan pilih (0-6):";
 }
 
 
-void menuQuest(LQuest &L){
-    string nQuestHapus, nQuestFind;
+void menuQuest(LQuest &LQ, LPlayer &LP){
+    string nQuestHapus, nQuestFind, idPlayer, idBaru;
     int n;
+    adrQuest q;
+    adrPlayer p, pBaru;
     bool running = true;
 
     while (running){
@@ -85,20 +98,78 @@ void menuQuest(LQuest &L){
             running = false;
             break;
         case 1:
-            inputQuest(L);
+            inputQuest(LQ);
             break;
         case 2:
             cout<< "    Silakan masukan nama QUEST yang ingin dihapus : ";
             cin>> nQuestHapus;
-            deleteQuest(L, nQuestHapus);
+            deleteQuest(LQ, nQuestHapus);
             break;
         case 3:
             cout<< "    Silakan masukan nama QUEST: ";
             cin>> nQuestFind;
-            showOneQuest(L, nQuestFind);
+            showOneQuest(LQ, nQuestFind);
             break;
         case 4:
-            showAllQuest(L);
+            showAllQuest(LQ);
+            break;
+        case 5:
+            cout<< "    Silakan masukan nama QUEST: ";
+            cin>> nQuestFind;
+            q = findQuest(LQ, nQuestFind);
+            if (q != nullptr){
+                cout<< "    Silakan masukan ID PLAYER: ";
+                cin>> idPlayer;
+                p = findPlayer(LP, idPlayer);
+                if (p != nullptr){
+                    if (findRelasi(q, p->info.idPlayer) == nullptr) {
+                        insertRelasi(q, p);
+                        cout<< GREEN<< "    "<< p->info.nama<< " berhasil mengambil quest"<< RESET<< endl;
+                    } else {
+                        cout<< RED<< "    Player sudah mengambil quest ini!"<< RESET<< endl;
+                    }
+                } else{
+                    cout<< RED<< "   Player tidak ditemukan!!"<< RESET<< endl;
+                }
+            } else{
+                cout<< RED<< "   Quest tidak ditemukan!!"<< RESET<< endl;
+            }
+            break;
+        case 6:
+            cout<< "    Masukan Nama QUEST: ";
+            cin>> nQuestFind;
+            q = findQuest(LQ, nQuestFind);
+            if (q != nullptr){
+                cout<< "    Silakan masukan ID PLAYER: ";
+                cin>> idPlayer;
+                deleteRelasi(q, idPlayer);
+            } else{
+                cout<< RED<< "    Quest tidak ditemukkan!!"<< RESET<< endl;
+            }
+            break;
+        case 7:
+            cout << "   Masukan Nama Quest: ";
+            cin >> nQuestFind;
+            q = findQuest(LQ, nQuestFind);
+            if (q != NULL) {
+                cout << "   ID Player LAMA: "; cin >> idPlayer;
+                p = findPlayer(LP, idPlayer);
+                cout << "   ID Player PENGGANTI: "; cin >> idBaru;
+                pBaru = findPlayer(LP, idBaru);
+
+                if (p != NULL && pBaru != NULL) {
+                    editRelasi(q, p, pBaru);
+                } else { cout << RED << "   Data Player tidak valid!" << RESET << endl; }
+            } else { cout << RED << "   Quest tidak ditemukan!" << RESET << endl; }
+            break;
+
+        case 8:
+            cout << "   Masukan Nama Quest: ";
+            cin >> nQuestFind;
+            q = findQuest(LQ, nQuestFind);
+            if (q != NULL) {
+                showPlayersFromQuest(q);
+            } else { cout << RED << "   Quest tidak ditemukan!" << RESET << endl; }
             break;
         default:
             cout<< RED<< "    Mohon pilih menu yang tertera!!"<< RESET<< endl;
@@ -127,18 +198,18 @@ void menuPlayer(LQuest &QL, LPlayer &L){
             running = false;
             break;
         case 1:
-            cout<< "Silakan masukan jumlah PLAYER yang akan ditambahkan : "<< endl;
+            cout<< "    Silakan masukan jumlah PLAYER yang akan ditambahkan : ";
             cin>> j;
             for (int i=0; i<j; i++){
-                cout << "Id Player : ";
+                cout << "    Id Player : ";
                 cin >> x.idPlayer;
-                cout << "Nama Player : ";
+                cout << "    Nama Player : ";
                 cin >> x.nama;
-                cout << "Class Player : ";
+                cout << "    Class Player : ";
                 cin >> x.playerClass;
-                cout << "Ras Player : ";
+                cout << "    Ras Player : ";
                 cin >> x.playerRace;
-                cout << "Level Player : ";
+                cout << "    Level Player : ";
                 cin >> x.level;
 
 
@@ -148,12 +219,12 @@ void menuPlayer(LQuest &QL, LPlayer &L){
             }
             break;
         case 2:
-            cout<< "Silakan masukan id PLAYER yang ingin dihapus : ";
+            cout<< "    Silakan masukan id PLAYER yang ingin dihapus : ";
             cin>> nPlayerHapus;
             deletePlayer(L, QL, nPlayerHapus);
             break;
         case 3:
-            cout<< "Silakan masukan Id PLAYER : ";
+            cout<< "    Silakan masukan Id PLAYER : ";
             cin>> nPlayerFind;
             showOnePlayer(L, nPlayerFind);
             break;
@@ -161,9 +232,22 @@ void menuPlayer(LQuest &QL, LPlayer &L){
             showAllChild(L);
             break;
         case 5:
-            //countPlayerWithoutQuest(LQuest, LPlayer);
+            j = countPlayerWithoutQuest(QL, L);
+            cout<< "    Jumlah Player yang tidak memiliki Quest adalah: "<< j<< endl;
+            break;
+        case 6:
+            cout << "    Masukan ID Player: "; cin >> nPlayerFind;
+            P = findPlayer(L, nPlayerFind);
+            if (P != NULL) {
+                showPlayer(P);
+                cout << endl;
+                showQuestFromPlayer(QL, P);
+            } else {
+                cout << RED << "    Player tidak ditemukan!" << RESET << endl;
+            }
+            break;
         default:
-            cout<< "Mohon pilih menu yang tertera!!"<< endl;
+            cout<< RED<< "    Mohon pilih menu yang tertera!!"<< RESET<< endl;
             break;
         }
         if (running) {
