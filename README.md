@@ -1,6 +1,6 @@
 # ⚔️ Quest & Player Management System
 
-> **Tugas Besar Algoritma dan Pemrograman** > Aplikasi Console C++ untuk mengelola data Quest (Misi) dan Player (Pemain) menggunakan Struktur Data Linked List dan Relasi.
+> **Tugas Besar Structur Data** > Aplikasi Console C++ untuk mengelola data Quest (Misi) dan Player (Pemain) menggunakan Struktur Data Linked List dan Relasi.
 
 ---
 
