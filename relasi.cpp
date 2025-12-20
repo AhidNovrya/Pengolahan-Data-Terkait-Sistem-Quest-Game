@@ -233,6 +233,7 @@ int countPlayerInAllQuest(LQuest Q){
     while (q != nullptr){
         i = countPlayerInQuest(q);
         total += i;
+        q = q->next;
     }
     return total;
 }
