@@ -147,8 +147,9 @@ void showQuestFromPlayer(LQuest QL, adrPlayer P);
 void showAllPlayersWithQuest();
 
 //COUNT
-int countQuestOfPlayer(LQuest QL, adrPlayer P);
-int countPlayerOnQuest(adrQuest Q);
+int countPlayerInQuest(adrQuest Q);
+int countPlayerInAllQuest(LQuest Q);
+int countQuestOfOnePlayer(LQuest QL, adrPlayer P);
 
 //EDIT
 void editRelasi(adrQuest Q, adrPlayer P_lama, adrPlayer P_baru);
