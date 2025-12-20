@@ -129,11 +129,13 @@ void showPlayer(adrPlayer P){
 
 // IS : menerima list player.
 // FS : seluruh data player dalam list ditampilkan ke layar atau menampilkan pesan jika list kosong.
-void showAllChild(LPlayer L){
+void showAllChild(LPlayer L, LQuest Q){
     adrPlayer P;
+    int jQuest;
     P = L.first;
     while (P != nullptr){
         showPlayer(P);
+        cout<< "    Jumlah Quest yang diikuti player: "<< countQuestOfOnePlayer(Q, P)<< endl;
         P = P->next;
     }
 }
