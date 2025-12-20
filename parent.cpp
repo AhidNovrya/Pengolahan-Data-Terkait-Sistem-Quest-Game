@@ -172,6 +172,7 @@ void inputQuest(LQuest &L){
                 x.levelMin = levelMin;
             } else{
                 cout<< RED<< "    Maaf, input tidak valid. harap masukan nilai yang sesuai!!"<< RESET<< endl;
+                levelMin = 0;
             }
         }
 
@@ -239,6 +240,7 @@ void deleteQuest(LQuest &L, string namaQuest){
             deallocateQuest(Q);
         } else {
             cout << RED<< "   Maaf, Quest tidak ditemukan!!"<< RESET<< endl;
+            tidakAda();
         }
     } else {
         cout << BLUE<< "   List quest kosong!!"<< RESET<< endl;
@@ -289,6 +291,7 @@ void showOneQuest(LQuest L, string namaQuest){
         showQuest(q);
     } else{
         cout<< RED<< "    Maaf, QUEST tidak ditemukan!!"<< RESET<< endl;
+        tidakAda();
     }
 }
 

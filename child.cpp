@@ -41,6 +41,7 @@ void deletePlayer(LPlayer &L, LQuest &QL, string idPlayer){
         p = findPlayer(L, idPlayer);
         if (p == nullptr){
             cout << RED<< "   Player dengan id " << idPlayer << " tidak ditemukan" << RESET<< endl;
+            tidakAda();
         }else{
             q = QL.first;
             while (q != nullptr){
@@ -119,6 +120,7 @@ void showOnePlayer(LPlayer L, string id){
         showPlayer(p);
     }else{
         cout << RED<< "player yang anda cari tidak ada"<< RESET <<endl;
+        tidakAda();
     }
 }
 
@@ -127,34 +129,22 @@ int countPlayerWithoutQuest(LQuest QL, LPlayer PL){
     adrPlayer P = PL.first;
     int jumlah = 0;
 
-    // 1. Loop untuk setiap PLAYER
     while (P != nullptr){
         bool punyaQuest = false;
         adrQuest q = QL.first;
-
-        // 2. Cek Quest
-        // Loop berjalan selama q tidak habis DAN player belum ditemukan di quest manapun
         while (q != nullptr && !punyaQuest){
-
             if (findRelasi(q, P->info.idPlayer) != nullptr){
-                // Jika ketemu, ubah status jadi true.
-                // Loop akan berhenti otomatis pada pengecekan while berikutnya.
                 punyaQuest = true;
             } else {
-                // Jika belum ketemu, lanjut ke quest berikutnya
                 q = q->next;
             }
         }
-
-        // 3. Jika status tetap false, berarti dia pengangguran
         if (punyaQuest == false){
             showPlayer(P);
             jumlah++;
         }
-
         P = P->next;
     }
-
     return jumlah;
 }
 

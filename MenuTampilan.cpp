@@ -2,6 +2,16 @@
 
 void judul(){
     cout<< R"(
+  |
+  |
+  + \                       __==-_      _-==__
+  \\.Q_.*=.             _--^###//        \\###^--_
+   `(#'/.\|            -#####//   (    )   \\#####-
+    .>' (_--.         -#####//    |\^^/|    \\#####-
+ _=/d   ,^\          _/####//     (@::@)     \\####\_
+~~ \)-'   '         /####((        \\//        ))####\
+   / |             -#####\\        (oo)        //#####-
+  '  '            -#######\\      / VV \      //#######-
 //========================================================\\
 ||    ____  __  ________________  ________   __  _______  ||
 ||   / __ \/ / / / __/ __/_  __/ / ___/ _ | /  |/  / __/  ||
@@ -122,7 +132,9 @@ void menuQuest(LQuest &LQ, LPlayer &LP){
                 cin>> idPlayer;
                 p = findPlayer(LP, idPlayer);
                 if (p != nullptr){
-                    if (findRelasi(q, p->info.idPlayer) == nullptr) {
+                    if (p->info.level < q->info.levelMin) {
+                        cout << RED << "    Gagal! level player kurang dari level minimum " << q->info.levelMin << RESET << endl;
+                    }else if(findRelasi(q, p->info.idPlayer) == nullptr) {
                         insertRelasi(q, p);
                         cout<< GREEN<< "    "<< p->info.nama<< " berhasil mengambil quest"<< RESET<< endl;
                     } else {
@@ -185,7 +197,7 @@ void menuPlayer(LQuest &QL, LPlayer &L){
     adrPlayer P;
     playerInfotype x;
     string nPlayerHapus, nPlayerFind;
-    int n, j;
+    int n, j, c, r;
     bool running = true;
 
     while (running){
@@ -203,19 +215,64 @@ void menuPlayer(LQuest &QL, LPlayer &L){
             for (int i=0; i<j; i++){
                 cout << "    Id Player : ";
                 cin >> x.idPlayer;
-                cout << "    Nama Player : ";
-                cin >> x.nama;
-                cout << "    Class Player : ";
-                cin >> x.playerClass;
-                cout << "    Ras Player : ";
-                cin >> x.playerRace;
-                cout << "    Level Player : ";
-                cin >> x.level;
+                if (x.idPlayer.length() != 4) {
+                    cout << RED <<"ID Player harus 4 karakter!" << RESET << endl;
+                    break;
+                }
 
+            cout << "    Nama Player(Tanpa Spasi) : ";
+            cin >> x.nama;
 
-                P = allocatePlayer(x);
-                insertPlayer(L, P);
-                cout<< endl;
+            cout << CYAN << R"(
+    Pilih Class Player (c):
+    1. Fighter
+    2. Wizard
+    3. Palladin
+    4. Bard
+    5. Ranger
+)" << RESET;
+    cout << "    Pilihan (1-5):";
+            cin >> c;
+
+            switch (c) {
+                case 1: x.playerClass = "Fighter"; break;
+                case 2: x.playerClass = "Wizard";  break;
+                case 3: x.playerClass = "Palladin";break;
+                case 4: x.playerClass = "Bard";    break;
+                case 5: x.playerClass = "Ranger";  break;
+                default:
+                    cout << RED << "Class tidak valid!" << RESET << endl;
+                    break;
+            }
+
+            cout << GREEN << R"(    Pilih Ras Player (r):
+    1. Human
+    2. Orc
+    3. Elf
+    4. Dwarf
+    5. Tabaxi
+)" << RESET;
+            cout << "    Pilihan (1-5):";
+            cin >> r;
+            cout << endll;
+
+            switch (r) {
+                case 1: x.playerRace = "Human";  break;
+                case 2: x.playerRace = "Orc";    break;
+                case 3: x.playerRace = "Elf";    break;
+                case 4: x.playerRace = "Dwarf";  break;
+                case 5: x.playerRace = "Tabaxi"; break;
+                default:
+                    cout << RED << "Ras tidak valid!" << RESET << endl;
+                    break;
+}
+            cout << "   Level Player : ";
+            cin >> x.level;
+            cout << endll;
+
+            P = allocatePlayer(x);
+            insertPlayer(L, P);
+            cout<< endl;
             }
             break;
         case 2:
@@ -291,22 +348,31 @@ cout << "@@@@=*#######*@@@@@@@@@@@%%+***%*########*@@@@@@@@@@@@@@@@" << endl;
 cout << "@@@@%=*#####%@@@@@@@@@@@@@@****#+##########@@@@@@@@@@@@@@@" << endl;
 }
 void tidakAda(){
-    cout << "         :##+.                                               " << endl;
-    cout << "         .#####+.                          .=*#-             " << endl;
-    cout << "         :*#######=                    :+*#####=             " << endl;
-    cout << "          :*########*-    ..:::....=+##########+             " << endl;
-    cout << "           :+#################################=.             " << endl;
-    cout << "             -##############################=.               " << endl;
-    cout << "               -##########################+.                 " << endl;
-    cout << "               +########################*:                   " << endl;
-    cout << "              :####* .##########=. =#####*                   " << endl;
-    cout << "              +####=:=##########+-=#######-                  " << endl;
-    cout << "             -*+#########++##########**###-                  " << endl;
-    cout << "             :===+#################=====###.                 " << endl;
-    cout << "             -===*######*-**+######=====###=                 " << endl;
-    cout << "             =###########****+#############+                 " << endl;
-    cout << "             .*#############################.                " << endl;
-    cout << "              .#############################=                " << endl;
-    cout << "              :##############################:               " << endl;
+    cout << YELLOW << R"(
+             :##+.
+             .#####+.                          .=*#-
+             :*#######=                    :+*#####=
+              :*########*-    ..:::....=+##########+
+               :+#################################=.
+                 -##############################=.
+                   -##########################+.
+                   +########################*:
+                  :####* .##########=. =#####*
+                  +####=:=##########+-=#######-
+                 -*+#########++##########**###-
+                 :===+#################=====###.
+                 -===*######*-**+######=====###=
+                 =###########****+#############+
+                 .*#############################.
+                  .#############################=
+                  :##############################:
+)" << RESET << endl;
 }
+
+
+
+
+
+
+
 
