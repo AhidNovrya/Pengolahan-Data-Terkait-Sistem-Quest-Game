@@ -22,6 +22,7 @@ int main(){
         case 0:
             saveData(Q, P);
             keluarGame();
+            system("pause");
             running = false;
             break;
         case 1:
