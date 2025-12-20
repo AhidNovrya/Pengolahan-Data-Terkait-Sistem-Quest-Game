@@ -1,5 +1,7 @@
 #include "game.h"
 
+// IS : program memanggil tampilan judul saat akan menampilkan halaman utama.
+// FS : judul aplikasi dan ASCII art ditampilkan ke layar.
 void judul(){
     cout<< R"(
   |
@@ -18,18 +20,26 @@ void judul(){
 ||  / /_/ / /_/ / _/_\ \  / /   / (_ / __ |/ /|_/ / _/    ||
 ||  \___\_\____/___/___/ /_/    \___/_/ |_/_/  /_/___/    ||
 ||                                                        ||
+||   By : Ahid Novryan & Muhammad Gyan Kaushal            ||
 )";
     garis();
 }
+
+// IS : program membutuhkan pemisah antar bagian tampilan.
+// FS : garis pembatas panjang ditampilkan ke layar.
 
 void garis(){
     cout<< "============================================================";
 }
 
+// IS : program membutuhkan pemisah tampilan dalam bentuk kartu.
+// FS : garis pembatas gaya kartu ditampilkan ke layar.
 void garisKartu(){
     cout<< R"(     /==========================================\)";
 }
 
+// IS : pengguna berada pada kondisi awal sebelum memilih fitur pada program.
+// FS : halaman home ditampilkan berisi judul dan pilihan menu utama.
 void tampilanHome(){
     cout<< R"(
 ||                                                        ||
@@ -46,6 +56,9 @@ void tampilanHome(){
 
 
 //[---------------QUEST---------------]
+
+// IS : pengguna memilih masuk ke bagian quest.
+// FS : tampilan menu quest ditampilkan berisi daftar pilihan pengelolaan quest.
 void tampilanMenuQuest(){
     judul();
     cout<< R"(
@@ -69,6 +82,8 @@ void tampilanMenuQuest(){
     cout<< "    Silakan pilih (0-8): ";
 }
 
+// IS : pengguna memilih masuk ke bagian player.
+// FS : tampilan menu player ditampilkan berisi daftar pilihan pengelolaan player.
 void tampilanMenuPlayer(){
     judul();
     cout<< R"(
@@ -90,7 +105,8 @@ void tampilanMenuPlayer(){
     cout<< "    Silakan pilih (0-6):";
 }
 
-
+// IS : pengguna berada di menu quest dan akan menjalankan navigasi berdasarkan pilihan input.
+// FS : proses menu quest berjalan sesuai pilihan pengguna sampai pengguna kembali ke menu sebelumnya.
 void menuQuest(LQuest &LQ, LPlayer &LP){
     string nQuestHapus, nQuestFind, idPlayer, idBaru;
     int n;
@@ -193,6 +209,8 @@ void menuQuest(LQuest &LQ, LPlayer &LP){
     }
 }
 
+// IS : pengguna berada di menu player dan akan menjalankan navigasi berdasarkan pilihan input.
+// FS : proses menu player berjalan sesuai pilihan pengguna sampai pengguna kembali ke menu sebelumnya.
 void menuPlayer(LQuest &QL, LPlayer &L){
     adrPlayer P;
     playerInfotype x;
@@ -254,7 +272,7 @@ void menuPlayer(LQuest &QL, LPlayer &L){
 )" << RESET;
             cout << "    Pilihan (1-5):";
             cin >> r;
-            cout << endll;
+            cout << endl;
 
             switch (r) {
                 case 1: x.playerRace = "Human";  break;
@@ -268,7 +286,7 @@ void menuPlayer(LQuest &QL, LPlayer &L){
 }
             cout << "   Level Player : ";
             cin >> x.level;
-            cout << endll;
+            cout << endl;
 
             P = allocatePlayer(x);
             insertPlayer(L, P);
@@ -313,7 +331,8 @@ void menuPlayer(LQuest &QL, LPlayer &L){
     }
 }
 
-
+// IS : pengguna memilih opsi keluar dari program.
+// FS : ditampilkan pesan penutup menggunakan ASCII art.
 void keluarGame(){
 cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#-=++....        " << endl;
 cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%=*===:.        " << endl;
@@ -347,6 +366,9 @@ cout << "@@@%+#****+**+*%@@@%#%%@#@=**+@@%*######*%@@@@@@@@@@@@@@@@" << endl;
 cout << "@@@@=*#######*@@@@@@@@@@@%%+***%*########*@@@@@@@@@@@@@@@@" << endl;
 cout << "@@@@%=*#####%@@@@@@@@@@@@@@****#+##########@@@@@@@@@@@@@@@" << endl;
 }
+
+// IS : terjadi kondisi data kosong atau hasil pencarian tidak ditemukan pada suatu menu.
+// FS : pesan informasi bahwa data tidak ada ditampilkan ke layar melalui ASCII art.
 void tidakAda(){
     cout << YELLOW << R"(
              :##+.

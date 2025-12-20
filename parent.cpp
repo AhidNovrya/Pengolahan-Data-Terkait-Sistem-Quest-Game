@@ -1,11 +1,15 @@
 #include "game.h"
 
 //[---------------DLL---------------]
+// IS : menerima list quest dalam kondisi apa pun.
+// FS : list quest berada pada kondisi kosong dengan first bernilai nullptr.
 void createListQuest(LQuest &L){
     L.first = nullptr;
     L.last = nullptr;
 }
 
+// IS : menerima data quest berupa nama quest, level minimum, difficulty, dan reward.
+// FS : terbentuk satu node quest baru dengan info sesuai data dan pointer relasi bernilai nullptr.
 adrQuest allocateQuest(questInfotype x){
     adrQuest q = new elmQuest;
 
@@ -20,18 +24,24 @@ adrQuest allocateQuest(questInfotype x){
     return q;
 }
 
+// IS : menerima alamat node quest yang mungkin bernilai nullptr atau valid.
+// FS : node quest dilepas dari memori dan alamatnya di-set menjadi nullptr.
 void deallocateQuest(adrQuest &Q){
     delete Q;
     Q = nullptr;
 }
 
-
+// IS : menerima list quest.
+// FS : menghasilkan nilai true jika list quest kosong dan false jika list berisi data.
 bool isEmptyQuest(LQuest L){
     return (L.first == nullptr) && (L.last == nullptr);
 }
 
 
 //[---------------FUNGSI PENDUKUNG]---------------]
+
+// IS : menerima dua nilai integer sebagai pembanding.
+// FS : menghasilkan true jika nilai pertama lebih kecil dari nilai kedua dan false jika tidak.
 bool isLess(adrQuest A, adrQuest B){
     if (A->info.dif < B->info.dif) {
         return true;
@@ -41,6 +51,8 @@ bool isLess(adrQuest A, adrQuest B){
     return false;
 }
 
+// IS : menerima level minimum quest.
+// FS : menghasilkan nilai difficulty berdasarkan rentang level minimum.
 int generateDif(int levelMin){
     if (levelMin < 10){
         return 1;
@@ -55,6 +67,8 @@ int generateDif(int levelMin){
     }
 }
 
+// IS : menerima nilai difficulty quest.
+// FS : menghasilkan nilai reward secara acak sesuai rentang reward untuk difficulty tersebut.
 int generateReward(int difficulty){
     int minGold, maxGold;
 
@@ -87,6 +101,8 @@ int generateReward(int difficulty){
     return reward;
 }
 
+// IS : menerima nilai difficulty quest.
+// FS : menghasilkan string representasi difficulty untuk kebutuhan tampilan.
 string printDif(int dif){
     switch (dif){
     case 1:
@@ -103,6 +119,8 @@ string printDif(int dif){
 }
 
 //[---------------INSERT---------------]
+// IS : menerima list quest dan satu node quest yang sudah dialokasikan.
+// FS : node quest dimasukkan ke awal list quest dan first menunjuk node tersebut, last ikut menyesuaikan jika list sebelumnya kosong.
 void insertFirstQuest(LQuest &L, adrQuest Q){
     if (isEmptyQuest(L)){
         L.first = Q;
@@ -114,6 +132,8 @@ void insertFirstQuest(LQuest &L, adrQuest Q){
     }
 }
 
+// IS : menerima list quest dan satu node quest yang sudah dialokasikan.
+// FS : node quest dimasukkan ke akhir list quest dan last menunjuk node tersebut, first ikut menyesuaikan jika list sebelumnya kosong.
 void insertLastQuest(LQuest &L, adrQuest Q){
     if (isEmptyQuest(L)){
         L.first = Q;
@@ -125,6 +145,8 @@ void insertLastQuest(LQuest &L, adrQuest Q){
     }
 }
 
+// IS : menerima list quest, alamat node quest sebelumnya, dan node quest baru.
+// FS : node quest baru disisipkan setelah node sebelumnya, dan last ikut menyesuaikan jika sisip dilakukan di akhir list.
 void insertAfterQuest(adrQuest prec, adrQuest Q){
     Q->next = prec->next;
     if (prec->next != nullptr){
@@ -135,6 +157,9 @@ void insertAfterQuest(adrQuest prec, adrQuest Q){
 }
 
 //Urutan Quest berdasarkan dificulity dan levelMin
+
+// IS : menerima list quest dan node quest baru.
+// FS : node quest dimasukkan ke list sesuai aturan pengurutan yang dipakai program, bisa di awal, di akhir, atau setelah node tertentu.
 void insertQuest(LQuest &L, adrQuest Q){
     if (isEmptyQuest(L)) {
         insertFirstQuest(L, Q);
@@ -154,6 +179,8 @@ void insertQuest(LQuest &L, adrQuest Q){
     }
 }
 
+// IS : pengguna berada pada kondisi akan menambahkan quest baru.
+// FS : data quest dibaca dari input pengguna, dibuat node quest baru, lalu dimasukkan ke list quest sesuai aturan insert.
 void inputQuest(LQuest &L){
     adrQuest Q;
     questInfotype x;
@@ -183,6 +210,8 @@ void inputQuest(LQuest &L){
 }
 
 //[---------------DELETE---------------]
+// IS : menerima list quest yang tidak kosong.
+// FS : node quest pertama dilepas dari list, first berpindah ke node berikutnya, dan last ikut menyesuaikan jika list menjadi kosong.
 void deleteFirstQuest(LQuest &L, adrQuest &Q){
     Q = L.first;
     if (L.first == L.last){
@@ -195,6 +224,8 @@ void deleteFirstQuest(LQuest &L, adrQuest &Q){
     }
 }
 
+// IS : menerima list quest yang tidak kosong.
+// FS : node quest terakhir dilepas dari list, last berpindah ke node sebelumnya, dan first ikut menyesuaikan jika list menjadi kosong.
 void deleteLastQuest(LQuest &L, adrQuest &Q){
     Q = L.last;
     if (L.first == L.last){
@@ -207,6 +238,8 @@ void deleteLastQuest(LQuest &L, adrQuest &Q){
     }
 }
 
+// IS : menerima list quest, alamat node quest sebelumnya, dan variabel penampung.
+// FS : node setelah node sebelumnya dilepas dari list dan disimpan ke penampung, last ikut menyesuaikan jika yang dihapus adalah node terakhir.
 void deleteAfterQuest(LQuest &L, adrQuest prec, adrQuest &Q){
     Q = prec->next;
     prec->next = Q->next;
@@ -219,6 +252,8 @@ void deleteAfterQuest(LQuest &L, adrQuest prec, adrQuest &Q){
     Q->prev = nullptr;
 }
 
+// IS : menerima list quest dan nama quest yang akan dihapus.
+// FS : jika quest ditemukan maka node quest tersebut dilepas dari list dengan penanganan kasus awal, tengah, atau akhir, lalu didealokasi dari memori.
 void deleteQuest(LQuest &L, string namaQuest){
     adrQuest P = nullptr;
     adrQuest Q = nullptr;
@@ -249,6 +284,9 @@ void deleteQuest(LQuest &L, string namaQuest){
 
 
 //[---------------FIND---------------]
+
+// IS : menerima list quest dan nama quest yang dicari.
+// FS : menghasilkan alamat node quest yang sesuai dengan nama quest atau nullptr jika tidak ditemukan.
 adrQuest findQuest(LQuest L, string namaQuest){
     adrQuest q = L.first;
 
@@ -261,6 +299,9 @@ adrQuest findQuest(LQuest L, string namaQuest){
 
 
 //[---------------COUNT---------------]
+
+// IS : menerima list quest.
+// FS : menghasilkan jumlah total node quest di dalam list.
 int countAllQuest(LQuest L){
     adrQuest q = L.first;
     int n = 0;
@@ -274,6 +315,9 @@ int countAllQuest(LQuest L){
 
 
 //[---------------PRINT to DISPLAY---------------]
+
+// IS : menerima alamat node quest yang valid.
+// FS : data quest ditampilkan ke layar sesuai format tampilan yang digunakan program.
 void showQuest(adrQuest q){
     garisKartu();
     cout<< R"(
@@ -285,6 +329,8 @@ void showQuest(adrQuest q){
 )";
 }
 
+// IS : menerima list quest dan nama quest yang ingin ditampilkan.
+// FS : jika quest ditemukan maka detail quest ditampilkan, jika tidak ditemukan maka menampilkan pesan bahwa quest tidak ada.
 void showOneQuest(LQuest L, string namaQuest){
     adrQuest q = findQuest(L, namaQuest);
     if (q != nullptr){
@@ -295,6 +341,8 @@ void showOneQuest(LQuest L, string namaQuest){
     }
 }
 
+// IS : menerima list quest.
+// FS : jika list tidak kosong maka seluruh quest ditampilkan satu per satu beserta jumlah quest, jika kosong maka menampilkan pesan list kosong.
 void showAllQuest(LQuest L){
     if (!isEmptyQuest(L)){
         adrQuest q = L.first;

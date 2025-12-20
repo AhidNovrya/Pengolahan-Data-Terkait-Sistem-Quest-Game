@@ -1,9 +1,14 @@
 #include "game.h"
 // Fungsi SLL
+
+// IS : menerima list player L dalam keadaan apa pun.
+// FS : list player L berada pada kondisi kosong dengan first bernilai nullptr.
 void createListPlayer(LPlayer &L){
     L.first = nullptr;
 }
 
+// IS : menerima data player berupa id, nama, class, race, dan level.
+// FS : terbentuk satu node player baru dengan info sesuai data, wealth di-generate dari level, dan next bernilai nullptr.
 adrPlayer allocatePlayer(playerInfotype x){
     adrPlayer p = new elmPlayer;
 
@@ -12,22 +17,33 @@ adrPlayer allocatePlayer(playerInfotype x){
     p->next = nullptr;
     return p;
 }
+
+// IS : menerima alamat node player yang mungkin bernilai nullptr atau valid.
+// FS : node player dilepas dari memori dan alamatnya di-set menjadi nullptr.
 void deallocatePlayer(adrPlayer &P){
     delete P;
     P = nullptr;
 }
 
+// IS : menerima list player.
+// FS : menghasilkan nilai true jika list player kosong dan false jika list berisi data.
 bool isEmptyPlayer(LPlayer L){
     return (L.first == nullptr);
 }
 
 // INSERT
+
+// IS : menerima list player dan satu node player yang telah dialokasikan.
+// FS : node player dimasukkan ke awal list player sehingga menjadi elemen pertama.
 void insertPlayer(LPlayer &L, adrPlayer P){
         P->next = L.first;
         L.first = P;
 }
 
 // DELETE
+
+// IS : menerima list player, list quest, dan id player yang akan dihapus.
+// FS : seluruh relasi player pada setiap quest dihapus dan node player dihapus dari list player.
 void deletePlayer(LPlayer &L, LQuest &QL, string idPlayer){
     adrPlayer p, b;
     adrRelasi r;
@@ -81,6 +97,9 @@ void deletePlayer(LPlayer &L, LQuest &QL, string idPlayer){
 
 
 // FIND
+
+// IS : menerima list player dan id player yang dicari.
+// FS : menghasilkan alamat node player yang sesuai dengan id atau nullptr jika tidak ditemukan.
 adrPlayer findPlayer(LPlayer L,  string idPlayer){
     adrPlayer p = L.first;
 
@@ -92,6 +111,9 @@ adrPlayer findPlayer(LPlayer L,  string idPlayer){
 }
 
 // SHOW
+
+// IS : menerima alamat node player.
+// FS : data player ditampilkan ke layar.
 void showPlayer(adrPlayer P){
     string strStat = "Lv. " + to_string(P->info.level) + " | " + P->info.playerClass + " | " + P->info.playerRace;
     string strGold = to_string(P->info.Wealth) + " g";
@@ -105,6 +127,8 @@ void showPlayer(adrPlayer P){
 )";
 }
 
+// IS : menerima list player.
+// FS : seluruh data player dalam list ditampilkan ke layar atau menampilkan pesan jika list kosong.
 void showAllChild(LPlayer L){
     adrPlayer P;
     P = L.first;
@@ -114,6 +138,8 @@ void showAllChild(LPlayer L){
     }
 }
 
+// IS : menerima list player dan id player.
+// FS : data player dengan id tersebut ditampilkan ke layar atau menampilkan pesan jika tidak ditemukan.
 void showOnePlayer(LPlayer L, string id){
     adrPlayer p = findPlayer(L, id);
     if (p != nullptr){
@@ -125,6 +151,9 @@ void showOnePlayer(LPlayer L, string id){
 }
 
 //COUNT
+
+// IS : menerima list quest dan list player.
+// FS : menampilkan seluruh player yang tidak memiliki quest dan menghasilkan jumlah player tersebut.
 int countPlayerWithoutQuest(LQuest QL, LPlayer PL){
     adrPlayer P = PL.first;
     int jumlah = 0;
@@ -150,6 +179,9 @@ int countPlayerWithoutQuest(LQuest QL, LPlayer PL){
 
 
 // fungsi pendukung
+
+// IS : menerima nilai level player.
+// FS : menghasilkan nilai wealth secara acak sesuai rentang yang ditentukan oleh level.
 int generateWealth(int level){
     int minGold, maxGold;
 
