@@ -352,7 +352,7 @@ void showAllQuest(LQuest L){
             showQuest(q);
             q = q->next;
         }
-        cout<< "    Total player yang sedang mengikuti quest adalah: "<< countPlayerinAllQuest(L)<< endl;
+        cout<< "    Total player yang sedang mengikuti quest adalah: "<< countPlayerInAllQuest(L)<< endl;
     } else{
         cout<< BLUE<< "    List quest kosong!!"<< RESET<< endl;
     }

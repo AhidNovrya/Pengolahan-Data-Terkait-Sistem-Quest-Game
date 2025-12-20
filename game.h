@@ -110,7 +110,7 @@ adrPlayer findPlayer(LPlayer L, string idPlayer);
 
 //PRINT to Display
 void showPlayer(adrPlayer p);
-void showAllChild(LPlayer L);
+void showAllChild(LPlayer L, LQuest Q);
 void showOnePlayer(LPlayer L, string nama);
 
 //COUNT

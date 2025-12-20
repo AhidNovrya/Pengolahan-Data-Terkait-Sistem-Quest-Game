@@ -304,7 +304,7 @@ void menuPlayer(LQuest &QL, LPlayer &L){
             showOnePlayer(L, nPlayerFind);
             break;
         case 4:
-            showAllChild(L);
+            showAllChild(L, QL);
             break;
         case 5:
             j = countPlayerWithoutQuest(QL, L);

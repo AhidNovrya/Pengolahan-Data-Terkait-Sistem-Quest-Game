@@ -93,7 +93,11 @@ void deleteRelasi(adrQuest &Q, string nameOrIdPlayer){
             if (relasiTarget == Q->firstRelasi){
                 deleteFirstRelasi(Q, R);
             } else if (relasiTarget->next != nullptr){
-                deleteAfterRelasi(Q, relasiTarget, R);
+                adrRelasi prec = Q->firstRelasi;
+                while(prec->next != relasiTarget){
+                    prec = prec->next;
+                }
+                deleteAfterRelasi(Q, prec, R);
             } else{
                 deleteLastRelasi(Q, R);
             }

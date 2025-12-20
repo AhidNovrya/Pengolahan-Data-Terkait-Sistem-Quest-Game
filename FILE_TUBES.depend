@@ -14,10 +14,10 @@
 1765025940 source:d:\semester3\sd_ori\tubes\file_tubes\main.cpp
 	"game.h"
 
-1766057734 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\child.cpp
+1766240150 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\child.cpp
 	"game.h"
 
-1766056490 d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\game.h
+1766241224 d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\game.h
 	<iostream>
 	<fstream>
 	<cstdlib>
@@ -25,16 +25,16 @@
 	<iomanip>
 	<string>
 
-1766056463 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\main.cpp
+1766240150 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\main.cpp
 	"game.h"
 
-1766058483 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\relasi.cpp
+1766241118 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\relasi.cpp
 	"game.h"
 
 1765862549 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\menu&tampilan.cpp
 	"game.h"
 
-1765722323 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\parent.cpp
+1766240150 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\parent.cpp
 	"game.h"
 
 1765626087 source:d:\semester3\sd_ori\tubes\pengolahan-data-terkait-sistem-quest-game\child.cpp
@@ -57,10 +57,10 @@
 1765559766 source:d:\semester3\sd_ori\tubes\pengolahan-data-terkait-sistem-quest-game\menu&tampilan.cpp
 	"game.h"
 
-1766057958 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\file_io.cpp
+1766240150 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\file_io.cpp
 	"game.h"
 
-1766056703 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\menutampilan.cpp
+1766240760 source:d:\document\document kuliah\tugas kuliah semester 3\struktur data\tubes std\menutampilan.cpp
 	"game.h"
 
 1766137178 source:d:\semester3\sd_ori\tubes\pengolahan-data-terkait-sistem-quest-game\pengolahan-data-terkait-sistem-quest-game\child.cpp
